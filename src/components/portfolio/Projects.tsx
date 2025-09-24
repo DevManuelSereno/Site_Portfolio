@@ -23,8 +23,8 @@ interface Project {
 const projects: Project[] = [
   {
     id: 1,
-    title: "Hollow Knight",
-    description: "Atividade avaliativa do processo trainee da Praxis Júnior",
+    title: "Hollow Knight - Silksong",
+    description: "Atividade avaliativa do processo trainee da Praxis Júnior.",
     longDescription: "Este projeto envolveu o cumprimento de uma demanda do processo trainee, onde precisei fazer o desenvolvimento de um site com base em um design previamente prototipado no Figma. Para isso, foi necessário utilizar HTML, CSS e JavaScript para o desenvolvimento do site, e o Git / Github para versionamento e hospedagem do código. *Não possui deploy",
     technologies: ["HTML", "CSS", "JavaScript"],
     image: "/img-site-hollow-knight.png",
@@ -39,29 +39,31 @@ const projects: Project[] = [
     ],
     outcomes: [
       "Demanda concluída",
-      "Familiaridade com a linguagem",
+      "Familiaridade com a linguagem e com desenvolvimento web",
     ]
   },
   {
     id: 2,
     title: "Biblioteca Virtual",
-    description: "Aplicativo de gestão de tarefas colaborativo com funcionalidades em tempo real.",
-    longDescription: "Desenvolvimento de uma aplicação web para gestão de projetos e tarefas em equipe, com funcionalidades de colaboração em tempo real, notificações push e integração com calendários.",
-    technologies: ["Next.js", "TypeScript", "Socket.io", "MongoDB", "TailwindCSS"],
-    image: "/placeholder-project.jpg",
-    github: "https://github.com/DevManuelSereno/projeto-exemplo-2",
+    description: "Aplicativo de cadastro de livros e usuários.",
+    longDescription: "Desenvolvimento de uma aplicação web para uma extensão da faculdade, que consiste em uma biblioteca virtual para servir de acervo para uma instituição específica. Como funcionalidades, permite o cadastro de usuários (Alunos e Professores) e de livros, com restrições de acesso e filtro de pesquisa por tema de livro. Com todas as informações armazenadas em um banco de dados SQL.",
+    technologies: ["TypeScript", "Next.JS", "TailwindCSS", "Lucide-React", "PostgreSQL"],
+    image: "/img-site-biblioteca-virtual.png",
+    github: "https://github.com/DevManuelSereno/Biblioteca-Virtual",
     live: "https://projeto-exemplo-2.vercel.app",
-    duration: "4 meses",
-    role: "Desenvolvedor Front-End Lead",
+    duration: "2 meses",
+    role: "Desenvolvedor Front-End Web",
     challenges: [
-      "Sincronização de dados em tempo real",
-      "Gerenciamento complexo de estado",
-      "Otimização para múltiplos usuários simultâneos"
+      "Sincronização com banco de dados",
+      "Cadastro de livros e disponibilização em PDF",
+      "Otimização e Responsividade",
+      "Primeiro contato com TypeScript e Tailwind CSS"
     ],
     outcomes: [
-      "Aumento de 60% na produtividade das equipes",
-      "Interface intuitiva e acessível",
-      "Sistema de colaboração eficiente"
+      "Satisfação do professor responsável pela extensão",
+      "Interface intuitiva, acessível e responsiva",
+      "Gerenciamento completo de livros e usuários",
+      "Restrição de conteúdos por hierarquia"
     ]
   },
   //   {

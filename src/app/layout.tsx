@@ -21,9 +21,9 @@ export const metadata: Metadata = {
   publisher: "Manuel Sereno",
   robots: "index, follow",
   icons: {
-    icon: '/vercel.svg',
+    icon: '/favicon.ico',
     shortcut: '/vercel.svg',
-    apple: '/vercel.svg',
+    apple: '/favicon.ico',
   },
   openGraph: {
     type: "website",
