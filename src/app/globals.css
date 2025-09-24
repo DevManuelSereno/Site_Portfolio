@@ -118,5 +118,9 @@
   }
   body {
     @apply bg-background text-foreground;
+    background-color: #1B1D20 !important;
+  }
+  html {
+    background-color: #1B1D20;
   }
 }
