@@ -1,9 +1,10 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ExternalLink, Github, Calendar, Users, Target } from 'lucide-react';
 import Image from 'next/image';
+import { ExternalLink, Github, Calendar, Users, Target } from 'lucide-react';
 import Modal from '@/components/ui/modal';
+import { FadeInUp, StaggerContainer, StaggerItem } from '@/components/ui/scroll-animation';
 
 interface Project {
   id: number;
@@ -29,7 +30,7 @@ const projects: Project[] = [
     technologies: ["HTML", "CSS", "JavaScript"],
     image: "/img-site-hollow-knight.png",
     github: "https://github.com/DevManuelSereno/HollowKnight-Page",
-    live: "#",
+    live: "https://devmanuelsereno.github.io/HollowKnight-Page/",
     duration: "1 semana",
     role: "Desenvolvedor Web",
     challenges: [
@@ -63,7 +64,6 @@ const projects: Project[] = [
       "Satisfação do professor responsável pela extensão",
       "Interface intuitiva, acessível e responsiva",
       "Gerenciamento completo de livros e usuários",
-      "Restrição de conteúdos por hierarquia"
     ]
   },
   //   {
@@ -106,19 +106,22 @@ export default function Projects() {
 
   return (
     <>
-      <section id="projetos" className="py-20 px-4 bg-#1B1D20">
+      <section id="projetos" className="py-20 px-4" style={{backgroundColor: '#1B1D20'}}>
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-16 text-white">
-            Projetos
-          </h2>
+          <FadeInUp>
+            <h2 className="text-4xl font-bold text-center mb-16 text-white">
+              Projetos
+            </h2>
+          </FadeInUp>
           
-          <div className="grid md:grid-cols-2 gap-8">
-            {projects.map((project) => (
-              <div 
-                key={project.id}
-                onClick={() => openModal(project)}
-                className="group relative bg-white rounded-lg overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-2xl hover:scale-[1.02]"
-              >
+          <StaggerContainer>
+            <div className="grid md:grid-cols-2 gap-8">
+              {projects.map((project) => (
+                <StaggerItem key={project.id}>
+                  <div 
+                    onClick={() => openModal(project)}
+                    className="group relative bg-white rounded-lg overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-2xl hover:scale-[1.02]"
+                  >
                 {/* Project Image */}
                 <div className="h-64 bg-gradient-to-br from-slate-700 to-slate-800 flex items-center justify-center relative overflow-hidden">
                   <div className="text-4xl text-white opacity-60">
@@ -178,9 +181,11 @@ export default function Projects() {
                     Ver detalhes →
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
+                  </div>
+                </StaggerItem>
+              ))}
+            </div>
+          </StaggerContainer>
         </div>
       </section>
 

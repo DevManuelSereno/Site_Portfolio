@@ -3,6 +3,7 @@
 import React from 'react';
 import { Github, Linkedin, Mail, Instagram, Download } from 'lucide-react';
 import Image from 'next/image';
+import { FadeInUp, FadeInDown, FadeInLeft, FadeInRight } from '@/components/ui/scroll-animation';
 
 export default function Hero() {
   const handleScrollToSection = (sectionId: string) => {
@@ -28,30 +29,39 @@ export default function Hero() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Side - Text Content */}
           <div className="space-y-6">
-            <div className="space-y-4">
-              <p className="text-blue-400 text-lg">
-                <span className="text-white">&lt;p&gt;</span> Olá, mundo! <span className="text-white">&lt;/p&gt;</span>
+            <FadeInDown delay={0.2}>
+              <div className="space-y-4">
+                <p className="text-blue-400 text-lg">
+                  <span className="text-white">&lt;p&gt;</span> Olá, mundo! <span className="text-white">&lt;/p&gt;</span>
+                </p>
+                <p className="text-slate-300 text-lg">me chamo</p>
+              </div>
+            </FadeInDown>
+            
+            <FadeInLeft delay={0.4}>
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold">
+                <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                  Manuel Sereno
+                </span>
+              </h1>
+            </FadeInLeft>
+            
+            <FadeInUp delay={0.6}>
+              <h2 className="text-2xl md:text-3xl text-white font-medium">
+                Desenvolvedor Front-End e UI/UX Designer
+              </h2>
+            </FadeInUp>
+            
+            <FadeInUp delay={0.8}>
+              <p className="text-lg text-slate-300 leading-relaxed max-w-lg">
+                2 anos de experiência com desenvolvimento web, sempre buscando 
+                desenvolver soluções digitais rápidas, modernas, escaláveis e personalizadas.
               </p>
-              <p className="text-slate-300 text-lg">me chamo</p>
-            </div>
-            
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold">
-              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-                Manuel Sereno
-              </span>
-            </h1>
-            
-            <h2 className="text-2xl md:text-3xl text-white font-medium">
-              Desenvolvedor Front-End e UI/UX Designer
-            </h2>
-            
-            <p className="text-lg text-slate-300 leading-relaxed max-w-lg">
-              2 anos de experiência com desenvolvimento web, sempre buscando 
-              desenvolver soluções digitais rápidas, modernas, escaláveis e personalizadas.
-            </p>
+            </FadeInUp>
             
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 pt-4">
+            <FadeInUp delay={1.0}>
+              <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <button 
                 onClick={() => handleScrollToSection('#contato')}
                 className="px-8 py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105 flex items-center gap-2 justify-center text-white"
@@ -73,10 +83,12 @@ export default function Hero() {
                 <Download size={20} />
                 Baixar CV
               </button>
-            </div>
+              </div>
+            </FadeInUp>
             
             {/* Social Links */}
-            <div className="flex gap-4 pt-4">
+            <FadeInUp delay={1.2}>
+              <div className="flex gap-4 pt-4">
               <a 
                 href="https://github.com/DevManuelSereno" 
                 target="_blank" 
@@ -111,12 +123,14 @@ export default function Hero() {
               >
                 <Instagram size={24} />
               </a>
-            </div>
+              </div>
+            </FadeInUp>
           </div>
           
           {/* Right Side - Profile Image */}
-          <div className="flex justify-center lg:justify-end">
-            <div className="relative">
+          <FadeInRight delay={0.4}>
+            <div className="flex justify-center lg:justify-end">
+              <div className="relative">
               <div className="w-80 h-80 md:w-96 md:h-96 rounded-full overflow-hidden border-4 border-blue-400/20 shadow-2xl">
                 {/* Option A: Use your own image */}
                 <Image
@@ -148,8 +162,9 @@ export default function Hero() {
               {/* Floating Elements */}
               <div className="absolute -top-4 -right-4 w-20 h-20 bg-blue-500/20 rounded-full blur-xl animate-pulse" />
               <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-cyan-500/20 rounded-full blur-xl animate-pulse delay-1000" />
+              </div>
             </div>
-          </div>
+          </FadeInRight>
         </div>
       </div>
     </section>

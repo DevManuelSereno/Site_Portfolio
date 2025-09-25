@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowDown } from 'lucide-react';
+import { FadeInUp, StaggerContainer, StaggerItem } from '@/components/ui/scroll-animation';
 
 interface Skill {
   name: string;
@@ -139,44 +140,58 @@ const Skills = () => {
   return (
     <section id="habilidades" className="py-20 px-4" style={{backgroundColor: '#1B1D20'}}>
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl font-bold text-center mb-16 text-white">
-          Habilidades
-        </h2>
+        <FadeInUp>
+          <h2 className="text-4xl font-bold text-center mb-16 text-white">
+            Habilidades
+          </h2>
+        </FadeInUp>
 
         {/* Known Skills */}
         <div className="mb-16">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-            {knownSkills.map((skill, index) => (
-              <SkillCard key={index} skill={skill} />
-            ))}
-          </div>
+          <StaggerContainer>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+              {knownSkills.map((skill, index) => (
+                <StaggerItem key={index}>
+                  <SkillCard skill={skill} />
+                </StaggerItem>
+              ))}
+            </div>
+          </StaggerContainer>
         </div>
 
         {/* Learning Section */}
         <div className="relative">
           {/* Learning Indicator */}
-          <div className="flex items-center justify-center mb-8">
-            <div className="flex items-center gap-3 text-slate-300">
-              <span className="text-lg font-medium">Em estudo</span>
-              <ArrowDown className="h-5 w-5" />
+          <FadeInUp>
+            <div className="flex items-center justify-center mb-8">
+              <div className="flex items-center gap-3 text-slate-300">
+                <span className="text-lg font-medium">Em estudo</span>
+                <ArrowDown className="h-5 w-5" />
+              </div>
             </div>
-          </div>
+          </FadeInUp>
 
           {/* Learning Skills */}
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
-            {learningSkills.map((skill, index) => (
-              <SkillCard key={index} skill={skill} isLearning={true} />
-            ))}
-          </div>
+          <StaggerContainer>
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
+              {learningSkills.map((skill, index) => (
+                <StaggerItem key={index}>
+                  <SkillCard skill={skill} isLearning={true} />
+                </StaggerItem>
+              ))}
+            </div>
+          </StaggerContainer>
         </div>
 
         {/* Additional Info */}
-        <div className="text-center mt-12">
-          <p className="text-slate-300 max-w-2xl mx-auto leading-relaxed">
-            Sempre em busca de aprender novas tecnologias e aperfeiçoar minhas habilidades. 
-            Atualmente focando em TypeScript, Next.js e desenvolvimento full-stack.
-          </p>
-        </div>
+        <FadeInUp delay={0.2}>
+          <div className="text-center mt-12">
+            <p className="text-slate-300 max-w-2xl mx-auto leading-relaxed">
+              Sempre em busca de aprender novas tecnologias e aperfeiçoar minhas habilidades. 
+              Atualmente focando em TypeScript, Next.js e desenvolvimento full-stack.
+            </p>
+          </div>
+        </FadeInUp>
       </div>
     </section>
   );
