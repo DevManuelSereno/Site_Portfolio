@@ -15,7 +15,8 @@ interface ContactFormData {
 // Email templates para Resend
 const createNotificationEmail = (data: ContactFormData) => {
   return {
-    from: 'Portfolio <noreply@manuelsereno.dev>',
+    from: 'Portfolio <onboarding@resend.dev>',
+    reply_to: [data.email], // Reply vai direto para quem enviou
     to: ['nelfsereno@gmail.com'],
     subject: `🌟 Nova mensagem de contato - ${data.name}`,
     html: `
@@ -80,7 +81,8 @@ const createNotificationEmail = (data: ContactFormData) => {
 
 const createAutoReplyEmail = (data: ContactFormData) => {
   return {
-    from: 'Manuel Sereno <noreply@manuelsereno.dev>',
+    from: 'Manuel Sereno <onboarding@resend.dev>',
+    reply_to: ['nelfsereno@gmail.com'],
     to: [data.email],
     subject: '✨ Obrigado pelo seu contato - Manuel Sereno',
     html: `
