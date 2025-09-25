@@ -34,7 +34,7 @@ export default function ScrollAnimation({
       transition: {
         duration,
         delay,
-        ease: [0.25, 0.1, 0.25, 1], // Custom easing for smooth animation
+        ease: "easeInOut", // Custom easing for smooth animation
       },
     },
   };
@@ -143,7 +143,7 @@ export function StaggerItem({ children, className = '' }: {
       y: 0,
       transition: {
         duration: 0.6,
-        ease: [0.25, 0.1, 0.25, 1],
+        ease: "easeInOut",
       },
     },
   };
