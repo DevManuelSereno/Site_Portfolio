@@ -173,22 +173,30 @@ Esta é uma resposta automática. Responderei pessoalmente em breve!
 };
 
 // Validation function
-const validateFormData = (data: any): { isValid: boolean; errors: string[] } => {
+const validateFormData = (data: unknown): { isValid: boolean; errors: string[] } => {
   const errors: string[] = [];
 
-  if (!data.name || data.name.trim().length < 2) {
+  // Type guard to ensure data is an object
+  if (!data || typeof data !== 'object') {
+    errors.push('Dados inválidos');
+    return { isValid: false, errors };
+  }
+
+  const formData = data as Record<string, unknown>;
+
+  if (!formData.name || typeof formData.name !== 'string' || formData.name.trim().length < 2) {
     errors.push('Nome é obrigatório e deve ter pelo menos 2 caracteres');
   }
 
-  if (!data.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+  if (!formData.email || typeof formData.email !== 'string' || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
     errors.push('Email válido é obrigatório');
   }
 
-  if (!data.message || data.message.trim().length < 10) {
+  if (!formData.message || typeof formData.message !== 'string' || formData.message.trim().length < 10) {
     errors.push('Mensagem é obrigatória e deve ter pelo menos 10 caracteres');
   }
 
-  if (data.phone && !/^[\d\s\(\)\-\+]+$/.test(data.phone)) {
+  if (formData.phone && (typeof formData.phone !== 'string' || !/^[\d\s\(\)\-\+]+$/.test(formData.phone))) {
     errors.push('Formato de telefone inválido');
   }
 

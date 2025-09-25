@@ -22,8 +22,8 @@ export const metadata: Metadata = {
   robots: "index, follow",
   icons: {
     icon: '/icon-site.png',
-    shortcut: '/vercel.svg',
-    apple: '/favicon.ico',
+    shortcut: '/icon-site.png',
+    apple: '/icon-site.png',
   },
   openGraph: {
     type: "website",

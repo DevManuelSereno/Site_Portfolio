@@ -24,23 +24,22 @@ interface Project {
 const projects: Project[] = [
   {
     id: 1,
-    title: "Hollow Knight - Silksong",
-    description: "Atividade avaliativa do processo trainee da Praxis Júnior.",
-    longDescription: "Este projeto envolveu o cumprimento de uma demanda do processo trainee, onde precisei fazer o desenvolvimento de um site com base em um design previamente prototipado no Figma. Para isso, foi necessário utilizar HTML, CSS e JavaScript para o desenvolvimento do site, e o Git / Github para versionamento e hospedagem do código. *Não possui deploy",
-    technologies: ["HTML", "CSS", "JavaScript"],
-    image: "/img-site-hollow-knight.png",
-    github: "https://github.com/DevManuelSereno/HollowKnight-Page",
-    live: "https://devmanuelsereno.github.io/HollowKnight-Page/",
-    duration: "1 semana",
-    role: "Desenvolvedor Web",
+    title: "Giuliana Ragno PSI",
+    description: "Criação de Design, manual de marca e desenvolvimento de site landing page profissional.",
+    longDescription: "Este projeto envolveu a criação de todo o manual de marca e o design para Giuliana Ragno, uma psicóloga de salvador que buscava uma maior presença na web (além das redes sociais). Desenvolvi todo o design no Figma, e desenvolvi utilizando React TypeScript, Tailwind CSS e Next.JS, com algumas outras bibliotecas para maior estilização do site.",
+    technologies: ["Figma", "TypeScript", "React", "Next.JS", "Tailwind CSS", "Lucide-react", "Framer Motion", "Nodemailer"],
+    image: "/img-site-giuli-psi.png",
+    github: "#",
+    live: "#",
+    duration: "em desenvolvimento...",
+    role: "Desenvolvedor Front-end Web",
     challenges: [
-      "Primeiro contato com JavaScript",
-      "Primeira vez programando de um design pronto",
+      "Primeiro trabalho freelancer",
+      "Primeira vez criando manual de marca",
       "Implementação de sistema de carrosel"
     ],
     outcomes: [
-      "Demanda concluída",
-      "Familiaridade com a linguagem e com desenvolvimento web",
+      "",
     ]
   },
   {
@@ -66,28 +65,69 @@ const projects: Project[] = [
       "Gerenciamento completo de livros e usuários",
     ]
   },
-  //   {
-  //   id: 2,
-  //   title: "PROJETO EXEMPLO 2",
-  //   description: "Aplicativo de gestão de tarefas colaborativo com funcionalidades em tempo real.",
-  //   longDescription: "Desenvolvimento de uma aplicação web para gestão de projetos e tarefas em equipe, com funcionalidades de colaboração em tempo real, notificações push e integração com calendários.",
-  //   technologies: ["Next.js", "TypeScript", "Socket.io", "MongoDB", "TailwindCSS"],
-  //   image: "/placeholder-project.jpg",
-  //   github: "https://github.com/DevManuelSereno/projeto-exemplo-2",
-  //   live: "https://projeto-exemplo-2.vercel.app",
-  //   duration: "4 meses",
-  //   role: "Desenvolvedor Front-End Lead",
-  //   challenges: [
-  //     "Sincronização de dados em tempo real",
-  //     "Gerenciamento complexo de estado",
-  //     "Otimização para múltiplos usuários simultâneos"
-  //   ],
-  //   outcomes: [
-  //     "Aumento de 60% na produtividade das equipes",
-  //     "Interface intuitiva e acessível",
-  //     "Sistema de colaboração eficiente"
-  //   ]
-  // }
+    {
+    id: 3,
+    title: "Projeto Final: Espaço Psi",
+    description: "Projeto final do processo trainee da Praxis Jr.",
+    longDescription: "Desenvolvimento de uma aplicação web para gestão de projetos e tarefas em equipe, com funcionalidades de colaboração em tempo real, notificações push e integração com calendários.",
+    technologies: ["HTML", "CSS", "JavaScript"],
+    image: "/img-site-espaco-psi.png",
+    github: "https://github.com/DevAgnaldoJunior/PF_Pr-xisJr",
+    live: "https://devagnaldojunior.github.io/PF_Pr-xisJr/",
+    duration: "2 semanas",
+    role: "Desenvolvedor Front-End Web",
+    challenges: [
+      "Processo eliminatório para ingressar na EJ",
+      "Primeiro contato com o conceito de responsividade",
+      "Primeira vez trabalhando em equipe durante desenvolvimento"
+    ],
+    outcomes: [
+      "Atividade que levou a efetivação na EJ",
+      "Participação na prototipação e no desenvolvimento",
+      "Sistema de colaboração eficiente"
+    ]
+  },
+    {
+    id: 4,
+    title: "Hollow Knight - Silksong",
+    description: "Atividade avaliativa do processo trainee da Praxis Júnior.",
+    longDescription: "Este projeto envolveu o cumprimento de uma demanda do processo trainee, onde precisei fazer o desenvolvimento de um site com base em um design previamente prototipado no Figma. Para isso, foi necessário utilizar HTML, CSS e JavaScript para o desenvolvimento do site, e o Git / Github para versionamento e hospedagem do código.",
+    technologies: ["HTML", "CSS", "JavaScript"],
+    image: "/img-site-hollow-knight.png",
+    github: "https://github.com/DevManuelSereno/HollowKnight-Page",
+    live: "https://devmanuelsereno.github.io/HollowKnight-Page/",
+    duration: "1 semana",
+    role: "Desenvolvedor Web",
+    challenges: [
+      "Primeiro contato com JavaScript",
+      "Primeira vez programando de um design pronto",
+      "Implementação de sistema de carrosel"
+    ],
+    outcomes: [
+      "Demanda concluída",
+      "Familiaridade com a linguagem e com desenvolvimento web",
+    ]
+  },
+  {
+    id: 5,
+    title: "Demanda Frontend Praxis",
+    description: "Demanda de estudo do setor de desenvolvimento frontend da Praxis Jr.",
+    longDescription: "Desenvolvimento de uma aplicação web para gestão de projetos e tarefas em equipe, com funcionalidades de colaboração em tempo real, notificações push e integração com calendários.",
+    technologies: ["HTML", "CSS", "JavaScript"],
+    image: "/img-site-demanda-css.png",
+    github: "https://github.com/DevManuelSereno/Demanda_Frontend_Praxis",
+    live: "https://devmanuelsereno.github.io/Demanda_Frontend_Praxis/",
+    duration: "2 semanas",
+    role: "Desenvolvedor Front-End Web",
+    challenges: [
+      "Processo de conectar ao WhatsApp",
+      "Estruturação e escolha de itens no formulário"
+    ],
+    outcomes: [
+      "Cumprimento de demanda do setor",
+      "Integração com wpp via JS sem necessitar de API"
+    ]
+  }
 ];
 
 export default function Projects() {
