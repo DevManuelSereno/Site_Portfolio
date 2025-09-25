@@ -18,7 +18,7 @@ Este é o portfólio pessoal de **Manuel Sereno**, desenvolvedor Front-End e UI/
 - 📱 **Totalmente Responsivo**: Otimizado para desktop, tablet e mobile
 - ⚡ **Performance Otimizada**: SSG com Next.js 15 e App Router
 - 🎭 **Animações Fluídas**: Transições suaves com Framer Motion
-- 📧 **Formulário de Contato**: Sistema completo de envio de emails
+- 📧 **Formulário de Contato**: Sistema completo de envio de emails via Resend API
 - 🔍 **SEO Otimizado**: Meta tags completas e Open Graph
 - ♿ **Acessibilidade**: Seguindo padrões de acessibilidade web
 - 🌙 **Tema Escuro**: Design com esquema de cores escuras elegante
