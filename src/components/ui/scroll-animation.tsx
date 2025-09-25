@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { ReactNode } from 'react';
 
 interface ScrollAnimationProps {
@@ -21,7 +21,7 @@ export default function ScrollAnimation({
   className = ''
 }: ScrollAnimationProps) {
   // Define animation variants based on direction
-  const variants = {
+  const variants: Variants = {
     hidden: {
       opacity: 0,
       y: direction === 'up' ? distance : direction === 'down' ? -distance : 0,
@@ -34,7 +34,6 @@ export default function ScrollAnimation({
       transition: {
         duration,
         delay,
-        ease: "easeInOut", // Custom easing for smooth animation
       },
     },
   };
@@ -109,7 +108,7 @@ export function StaggerContainer({ children, className = '' }: {
   children: ReactNode;
   className?: string;
 }) {
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -136,14 +135,13 @@ export function StaggerItem({ children, className = '' }: {
   children: ReactNode;
   className?: string;
 }) {
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
         duration: 0.6,
-        ease: "easeInOut",
       },
     },
   };
