@@ -44,11 +44,8 @@ Este é o portfólio pessoal de **Manuel Sereno**, desenvolvedor Front-End e UI/
 - **[tw-animate-css 1.3.8](https://github.com/tw-animate-css/tw-animate-css)** - Animações CSS adicionais
 
 ### Backend & APIs
-- **[Nodemailer 7.0.6](https://nodemailer.com)** - Envio de emails pelo servidor
+- **[Resend API](https://resend.com)** - API de e-mail para desenvolvedores
 - **[Next.js API Routes](https://nextjs.org/docs/api-routes/introduction)** - Endpoints serverless
-
-### Análise & Performance
-- **[Vercel Speed Insights 1.2.0](https://vercel.com/docs/speed-insights)** - Monitoramento de performance
 
 ### Desenvolvimento
 - **[ESLint 9](https://eslint.org)** - Linter para JavaScript/TypeScript
@@ -141,91 +138,6 @@ src/
 - npm, yarn, pnpm ou bun
 - Conta de email para configuração do Nodemailer
 
-### Instalação
-
-1. **Clone o repositório**
-```bash
-git clone https://github.com/DevManuelSereno/portfolio-landing-page.git
-cd portfolio-landing-page
-```
-
-2. **Instale as dependências**
-```bash
-npm install
-# ou
-yarn install
-# ou
-pnpm install
-```
-
-3. **Configure as variáveis de ambiente**
-```bash
-# Crie o arquivo .env.local na raiz do projeto
-cp .env.example .env.local
-```
-
-**Variáveis necessárias para o .env.local:**
-```env
-# Configuração do Email (Nodemailer)
-EMAIL_HOST=smtp.gmail.com
-EMAIL_PORT=587
-EMAIL_USER=seu-email@gmail.com
-EMAIL_PASS=sua-senha-app
-EMAIL_FROM=seu-email@gmail.com
-EMAIL_TO=destino@gmail.com
-```
-
-4. **Execute o servidor de desenvolvimento**
-```bash
-npm run dev
-# ou
-yarn dev
-# ou
-pnpm dev
-```
-
-5. **Acesse a aplicação**
-Abra [http://localhost:3000](http://localhost:3000) no seu navegador
-
-## 📝 Scripts Disponíveis
-
-```bash
-# Desenvolvimento
-npm run dev          # Inicia o servidor de desenvolvimento
-
-# Build & Produção
-npm run build        # Gera build de produção otimizado
-npm run start        # Inicia servidor de produção
-
-# Qualidade de Código
-npm run lint         # Executa ESLint para verificação de código
-```
-
-## 🌐 Deploy e Hospedagem
-
-### Vercel (Recomendado)
-
-O projeto está otimizado para deploy na Vercel:
-
-1. **Deploy automático via GitHub**
-```bash
-# Conecte seu repositório à Vercel
-# Configure as variáveis de ambiente no dashboard
-# Deploy automático a cada push
-```
-
-2. **Deploy via CLI**
-```bash
-npm i -g vercel
-vercel --prod
-```
-
-### Outras Plataformas
-
-- **Netlify**: Configure build command como `npm run build`
-- **Railway**: Deploy direto do GitHub com auto-deploy
-- **DigitalOcean App Platform**: Suporte nativo para Next.js
-
 ## 🔧 Configurações Técnicas
 
 ### TypeScript
@@ -275,16 +187,6 @@ vercel --prod
 - ✅ **Sitemap**: Geração automática
 - ✅ **Robots.txt**: Configuração de crawling
 
-## 🤝 Contribuição
-
-Contribuições são sempre bem-vindas! Para contribuir:
-
-1. Fork o projeto
-2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
-3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
-4. Push para a branch (`git push origin feature/AmazingFeature`)
-5. Abra um Pull Request
-
 ## 📞 Contato
 
 **Manuel Sereno** - Desenvolvedor Front-End & UI/UX Designer
@@ -294,12 +196,6 @@ Contribuições são sempre bem-vindas! Para contribuir:
 - 🐱 GitHub: [@DevManuelSereno](https://github.com/DevManuelSereno)
 - 📱 WhatsApp: [(71) 99995-6042](https://wa.me/5571999956042)
 - 🌐 Website: [manuelsereno.dev](https://manuelsereno.dev)
-
-## 📄 Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
----
 
 <div align="center">
   <p>Desenvolvido com ❤️ por <strong>Manuel Sereno</strong></p>
