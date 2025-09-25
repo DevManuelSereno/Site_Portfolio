@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   publisher: "Manuel Sereno",
   robots: "index, follow",
   icons: {
-    icon: '/tab-icon.png',
+    icon: '/icon-site.png',
     shortcut: '/vercel.svg',
     apple: '/favicon.ico',
   },
