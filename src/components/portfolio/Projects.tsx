@@ -32,7 +32,7 @@ const projects: Project[] = [
     github: "#",
     live: "#",
     duration: "em desenvolvimento...",
-    role: "Desenvolvedor Front-end Web",
+    role: "Desenvolvedor Front-end Web & UI/UX Designer",
     challenges: [
       "Primeiro trabalho freelancer",
       "Primeira vez criando manual de marca",

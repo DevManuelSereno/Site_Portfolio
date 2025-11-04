@@ -76,7 +76,7 @@ const Footer = () => {
                   <div>
                     <p className="text-slate-400 text-sm">linkedin:</p>
                     <a 
-                      href="https://linkedin.com/in/manuel-sereno"
+                      href="https://linkedin.com/in/dev-manuel-sereno"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-cyan-500 hover:text-cyan-300 transition-colors"
