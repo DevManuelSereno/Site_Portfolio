@@ -69,19 +69,24 @@ export function AboutSection() {
             Apaixonado por tecnologia, movido por detalhes.
           </h2>
           <div className="mt-8 space-y-5 text-base leading-relaxed text-muted-foreground">
+            {/* Correção de fatos apenas (MIGRACAO.md §7). A reescrita de voz e
+                posicionamento continua sendo Fase 1 (PLAN.md §12.3) — aqui só
+                foram removidas as afirmações que estavam falsas no ar. */}
             <p>
               Encontrei na programação a oportunidade de transformar paixão em
-              carreira. Curso o 8º semestre de Ciência da Computação, ampliando
-              minha visão em TI e reforçando meu interesse em atuar como
-              desenvolvedor.
+              carreira. Sou bacharel em Ciência da Computação pela UNIFACS,
+              formação que ampliou minha visão em TI e reforçou meu interesse em
+              atuar como desenvolvedor.
             </p>
             <p>
-              Atuo como desenvolvedor web na{' '}
+              Atuo como desenvolvedor front-end na{' '}
+              <span className="text-foreground">PASS</span>, onde construo
+              interfaces em Next.js, TypeScript e Tailwind CSS, integro APIs e
+              cuido da cobertura de idiomas da plataforma com i18n. Antes disso
+              passei um ano e três meses na{' '}
               <span className="text-foreground">Praxis Empresa Júnior</span>,
-              criando soluções com HTML5, CSS3, JavaScript ES6+ e ferramentas de
-              design como Figma. Também trabalho com plataformas como HostGator,
-              acumulando experiência em projetos modernos e escaláveis — e
-              avançando nos meus estudos em React, SCSS, Node.js e SQL.
+              trabalhando com HTML5, CSS3, JavaScript ES6+ e Figma — e sigo
+              estudando Node.js e SQL.
             </p>
             <p>
               Meu objetivo é consolidar minha carreira unindo base acadêmica,

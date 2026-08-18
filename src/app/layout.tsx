@@ -1,39 +1,71 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+
+import { siteConfig } from "@/lib/site-config";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// As três vozes do DESIGN.md: Space Grotesk afirma (títulos), Inter explica
+// (prosa), JetBrains Mono anota (label, número, tag, CTA). Substituem Geist e
+// Geist Mono, que o design system não usa.
+const inter = Inter({
   subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
+  variable: "--font-space-grotesk",
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Manuel Sereno - Desenvolvedor Front-End e UI/UX Designer",
-  description: "Desenvolvedor Front-End especializado em React, TypeScript e Next.js. 2 anos de experiência criando soluções digitais modernas e escaláveis. Localizado em Salvador, Bahia.",
-  keywords: ["desenvolvedor front-end", "react", "typescript", "next.js", "ui/ux designer", "salvador bahia", "desenvolvedor web"],
-  authors: [{ name: "Manuel Sereno" }],
-  creator: "Manuel Sereno",
-  publisher: "Manuel Sereno",
+  title: siteConfig.title,
+  description: siteConfig.description,
+  keywords: [
+    "Manuel Sereno",
+    "desenvolvedor front-end",
+    "react",
+    "next.js",
+    "typescript",
+    "ui/ux designer",
+    "salvador bahia",
+    "desenvolvedor web",
+  ],
+  authors: [{ name: siteConfig.name }],
+  creator: siteConfig.name,
+  publisher: siteConfig.name,
   robots: "index, follow",
+  manifest: "/site.webmanifest",
   openGraph: {
     type: "website",
-    locale: "pt_BR",
-    url: "https://manuelsereno.dev",
-    title: "Manuel Sereno - Desenvolvedor Front-End e UI/UX Designer",
-    description: "Desenvolvedor Front-End especializado em React, TypeScript e Next.js. 2 anos de experiência criando soluções digitais modernas e escaláveis.",
+    locale: siteConfig.locale,
+    // Corrigido no merge: apontava para manuelsereno.dev, domínio que o Manuel
+    // não possui. Agora vem do site-config.
+    url: siteConfig.url,
+    title: siteConfig.title,
+    description: siteConfig.description,
     siteName: "Manuel Sereno Portfolio",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Manuel Sereno - Desenvolvedor Front-End e UI/UX Designer",
-    description: "Desenvolvedor Front-End especializado em React, TypeScript e Next.js. 2 anos de experiência criando soluções digitais modernas e escaláveis.",
+    title: siteConfig.title,
+    description: siteConfig.description,
     creator: "@ManuelSereno",
   },
+};
+
+export const viewport: Viewport = {
+  colorScheme: "dark",
+  themeColor: "#0d1117",
 };
 
 export default function RootLayout({
@@ -42,11 +74,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR" data-scroll-behavior="smooth">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+    <html
+      lang={siteConfig.lang}
+      // data-scroll-behavior: a 16 não sobrescreve mais scroll-behavior na
+      // navegação, e o site é todo âncora com rolagem suave.
+      data-scroll-behavior="smooth"
+      className={`dark ${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} bg-background`}
+    >
+      <body className="font-sans antialiased">
         {children}
+        {process.env.NODE_ENV === "production" && (
+          <>
+            <Analytics />
+            <SpeedInsights />
+          </>
+        )}
       </body>
     </html>
   );
