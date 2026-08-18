@@ -3,6 +3,7 @@ import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
+import { JsonLd } from "@/components/json-ld";
 import { siteConfig } from "@/lib/site-config";
 import "./globals.css";
 
@@ -28,6 +29,13 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  // Sem metadataBase, as URLs de OG e canonical resolvem como relativas e
+  // quebram fora do site.
+  metadataBase: new URL(siteConfig.url),
+  alternates: {
+    canonical: "/",
+    // Espaço reservado para `languages` quando o i18n entrar (decisão 2).
+  },
   title: siteConfig.title,
   description: siteConfig.description,
   keywords: [
@@ -82,6 +90,7 @@ export default function RootLayout({
       className={`dark ${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} bg-background`}
     >
       <body className="font-sans antialiased">
+        <JsonLd />
         {children}
         {process.env.NODE_ENV === "production" && (
           <>
