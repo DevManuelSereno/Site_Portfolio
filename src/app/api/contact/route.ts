@@ -1,9 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
-// Initialize Resend
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 // Define the interface for contact form data
 interface ContactFormData {
   name: string;
@@ -220,6 +217,11 @@ export async function POST(request: NextRequest) {
         { status: 500 }
       );
     }
+
+    // Instanciado aqui, e não no escopo do módulo: o construtor do Resend lança
+    // quando a chave falta, e no escopo do módulo isso quebrava o `next build`
+    // (coleta de dados de página) antes da verificação acima poder responder.
+    const resend = new Resend(process.env.RESEND_API_KEY);
 
     // Obter IP do cliente para rate limiting
     const clientIP = request.headers.get('x-forwarded-for')?.split(',')[0] || 

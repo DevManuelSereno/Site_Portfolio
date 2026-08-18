@@ -1,0 +1,289 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-16T00:00:00.000Z",
+  "title": "Design System: Manuel Sereno — Portfólio",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Ciano React",
+        "canonical": "oklch(0.83 0.104 214)",
+        "tonalRamp": [
+          "oklch(0.15 0.104 214)",
+          "oklch(0.26 0.104 214)",
+          "oklch(0.37 0.104 214)",
+          "oklch(0.49 0.104 214)",
+          "oklch(0.60 0.104 214)",
+          "oklch(0.71 0.104 214)",
+          "oklch(0.83 0.104 214)",
+          "oklch(0.95 0.104 214)"
+        ]
+      },
+      "background": {
+        "role": "neutral",
+        "displayName": "Azul-Ardósia Profundo",
+        "canonical": "oklch(0.17 0.014 258)",
+        "tonalRamp": [
+          "oklch(0.15 0.014 258)",
+          "oklch(0.26 0.014 258)",
+          "oklch(0.37 0.014 258)",
+          "oklch(0.49 0.014 258)",
+          "oklch(0.60 0.014 258)",
+          "oklch(0.71 0.014 258)",
+          "oklch(0.83 0.014 258)",
+          "oklch(0.95 0.014 258)"
+        ]
+      },
+      "card": {
+        "role": "neutral",
+        "displayName": "Ardósia Elevada",
+        "canonical": "oklch(0.21 0.016 258)",
+        "tonalRamp": [
+          "oklch(0.15 0.016 258)",
+          "oklch(0.26 0.016 258)",
+          "oklch(0.37 0.016 258)",
+          "oklch(0.49 0.016 258)",
+          "oklch(0.60 0.016 258)",
+          "oklch(0.71 0.016 258)",
+          "oklch(0.83 0.016 258)",
+          "oklch(0.95 0.016 258)"
+        ]
+      },
+      "foreground": {
+        "role": "neutral",
+        "displayName": "Névoa Clara",
+        "canonical": "oklch(0.94 0.006 250)",
+        "tonalRamp": [
+          "oklch(0.15 0.006 250)",
+          "oklch(0.26 0.006 250)",
+          "oklch(0.37 0.006 250)",
+          "oklch(0.49 0.006 250)",
+          "oklch(0.60 0.006 250)",
+          "oklch(0.71 0.006 250)",
+          "oklch(0.83 0.006 250)",
+          "oklch(0.95 0.006 250)"
+        ]
+      },
+      "muted-foreground": {
+        "role": "neutral",
+        "displayName": "Névoa Recuada",
+        "canonical": "oklch(0.68 0.014 250)",
+        "tonalRamp": [
+          "oklch(0.15 0.014 250)",
+          "oklch(0.26 0.014 250)",
+          "oklch(0.37 0.014 250)",
+          "oklch(0.49 0.014 250)",
+          "oklch(0.60 0.014 250)",
+          "oklch(0.71 0.014 250)",
+          "oklch(0.83 0.014 250)",
+          "oklch(0.95 0.014 250)"
+        ]
+      },
+      "border": {
+        "role": "neutral",
+        "displayName": "Fio",
+        "canonical": "oklch(1 0 0 / 10%)",
+        "tonalRamp": [
+          "oklch(1 0 0 / 4%)",
+          "oklch(1 0 0 / 8%)",
+          "oklch(1 0 0 / 10%)",
+          "oklch(1 0 0 / 14%)",
+          "oklch(1 0 0 / 20%)",
+          "oklch(1 0 0 / 32%)",
+          "oklch(1 0 0 / 50%)",
+          "oklch(1 0 0 / 80%)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Apenas o nome no hero. Uma ocorrência por página. Escala por breakpoint: 3.75rem, 4.5rem em sm, 6rem em lg."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Título de seção. 1.875rem, subindo para 2.25rem em sm. A variante longa de Contato vai a 2.25rem/3rem com line-height 1.05."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Títulos de card e de projeto. 1.5rem em peso 600; o projeto em destaque usa 2.25rem em peso 700."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Toda a prosa, renderizada em muted-foreground. Largura de leitura limitada a 42rem em introduções e 28rem em colunas."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "A legenda técnica: eyebrow de seção, nome de canal, tag, rodapé. Sempre caixa-alta. Variante compacta usa letter-spacing 0.1em."
+      }
+    },
+    "shadows": [
+      {
+        "name": "flutuante",
+        "value": "0 10px 15px -3px rgb(0 0 0 / 0.2), 0 4px 6px -4px rgb(0 0 0 / 0.2)",
+        "purpose": "Header quando se destaca da página ao rolar e assume forma de pílula. Único uso em elemento de navegação."
+      },
+      {
+        "name": "sobreposto",
+        "value": "0 25px 50px -12px rgb(0 0 0 / 0.25)",
+        "purpose": "Modal, que precisa se separar do conteúdo por trás do backdrop desfocado."
+      }
+    ],
+    "motion": [
+      {
+        "name": "transicao-padrao",
+        "value": "300ms",
+        "purpose": "Duração padrão de transição de cor e forma: borda acendendo no hover, header trocando de forma, traço do card crescendo."
+      },
+      {
+        "name": "transicao-imagem",
+        "value": "500ms",
+        "purpose": "Escala de imagem de projeto no hover (scale 1.05). Mais lenta de propósito, para não competir com a leitura."
+      },
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0, 0, 0.2, 1)",
+        "purpose": "Easing do traço decorativo do card de habilidade ao crescer."
+      },
+      {
+        "name": "deslocamento-cta",
+        "value": "translateY(-2px)",
+        "purpose": "O único deslocamento do sistema. Exclusivo do CTA primário no hover; a seta acompanha com 2px na diagonal."
+      },
+      {
+        "name": "marquee",
+        "value": "38s linear infinite",
+        "purpose": "Esteira de logos do stack. Pausa no hover do grupo, desativada em prefers-reduced-motion."
+      }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" },
+      { "name": "container", "value": "1152px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "CTA Primário",
+      "kind": "button",
+      "refersTo": "cta-primary",
+      "description": "Ação principal da seção. Aparece uma vez por seção e é o único elemento do sistema que se desloca no hover.",
+      "html": "<a href=\"#contato\" class=\"ds-cta-primary\">Vamos conversar<svg class=\"ds-cta-primary__icon\" xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M7 7h10v10\"/><path d=\"M7 17 17 7\"/></svg></a>",
+      "css": ".ds-cta-primary { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--primary, oklch(0.83 0.104 214)); color: var(--primary-foreground, oklch(0.17 0.02 258)); border-radius: 9999px; padding: 0.75rem 1.5rem; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 0.875rem; font-weight: 500; text-decoration: none; transition: transform 300ms; } .ds-cta-primary:hover { transform: translateY(-2px); } .ds-cta-primary:focus-visible { outline: 2px solid var(--primary, oklch(0.83 0.104 214)); outline-offset: 4px; } .ds-cta-primary__icon { transition: transform 300ms; } .ds-cta-primary:hover .ds-cta-primary__icon { transform: translate(2px, -2px); }"
+    },
+    {
+      "name": "CTA Contorno",
+      "kind": "button",
+      "refersTo": "cta-outline",
+      "description": "Ação secundária. Não se desloca — responde apenas acendendo borda e texto.",
+      "html": "<a href=\"#projetos\" class=\"ds-cta-outline\">Ver projetos</a>",
+      "css": ".ds-cta-outline { display: inline-flex; align-items: center; gap: 0.5rem; background: transparent; color: var(--foreground, oklch(0.94 0.006 250)); border: 1px solid var(--border, oklch(1 0 0 / 10%)); border-radius: 9999px; padding: 0.75rem 1.5rem; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 0.875rem; text-decoration: none; transition: color 300ms, border-color 300ms; } .ds-cta-outline:hover { border-color: color-mix(in oklab, var(--primary, oklch(0.83 0.104 214)) 50%, transparent); color: var(--primary, oklch(0.83 0.104 214)); } .ds-cta-outline:focus-visible { outline: 2px solid var(--primary, oklch(0.83 0.104 214)); outline-offset: 4px; }"
+    },
+    {
+      "name": "Tag",
+      "kind": "chip",
+      "refersTo": "tag",
+      "description": "Rótulo estático de tecnologia ou entregável. Não é controle: sem hover, sem estado selecionado.",
+      "html": "<span class=\"ds-tag\">TypeScript</span>",
+      "css": ".ds-tag { display: inline-block; background: transparent; color: var(--muted-foreground, oklch(0.68 0.014 250)); border: 1px solid var(--border, oklch(1 0 0 / 10%)); border-radius: 9999px; padding: 0.25rem 0.75rem; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 0.75rem; }"
+    },
+    {
+      "name": "Section Eyebrow",
+      "kind": "custom",
+      "description": "Componente assinatura. Abre todas as seções internas: número sequencial em ciano, fio de 1px ocupando o vão, e nome da seção em mono caixa-alta. É a legenda da prancha.",
+      "html": "<div class=\"ds-eyebrow\"><span class=\"ds-eyebrow__num\">02</span><span class=\"ds-eyebrow__rule\"></span><span class=\"ds-eyebrow__label\">Habilidades</span></div>",
+      "css": ".ds-eyebrow { display: flex; align-items: center; gap: 1rem; } .ds-eyebrow__num { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 0.875rem; color: var(--primary, oklch(0.83 0.104 214)); } .ds-eyebrow__rule { flex: 1; height: 1px; background: var(--border, oklch(1 0 0 / 10%)); } .ds-eyebrow__label { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.25em; color: var(--muted-foreground, oklch(0.68 0.014 250)); }"
+    },
+    {
+      "name": "Skill Card",
+      "kind": "card",
+      "refersTo": "card-skill",
+      "description": "Componente assinatura. Card inteiro é alvo de clique e abre um modal. O traço decorativo em repouso tem exatamente a largura do ícone acima (44px) e cresce até a largura total no hover ou foco por teclado.",
+      "html": "<li class=\"ds-skill-card\"><button type=\"button\" class=\"ds-skill-card__trigger\"><span class=\"ds-skill-card__row\"><span class=\"ds-skill-card__icon\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><circle cx=\"12\" cy=\"12\" r=\"2\"/><ellipse cx=\"12\" cy=\"12\" rx=\"10\" ry=\"4.5\"/><ellipse cx=\"12\" cy=\"12\" rx=\"10\" ry=\"4.5\" transform=\"rotate(60 12 12)\"/><ellipse cx=\"12\" cy=\"12\" rx=\"10\" ry=\"4.5\" transform=\"rotate(120 12 12)\"/></svg></span><span class=\"ds-skill-card__name\">React</span></span><span aria-hidden=\"true\" class=\"ds-skill-card__trace\"></span></button></li>",
+      "css": ".ds-skill-card { list-style: none; border: 1px solid var(--border, oklch(1 0 0 / 10%)); border-radius: 11.2px; background: var(--background, oklch(0.17 0.014 258)); transition: border-color 300ms; } .ds-skill-card:hover { border-color: color-mix(in oklab, var(--primary, oklch(0.83 0.104 214)) 50%, transparent); } .ds-skill-card__trigger { display: flex; flex-direction: column; gap: 1rem; width: 100%; height: 100%; padding: 1.25rem; background: none; border: none; text-align: left; cursor: pointer; outline: none; } .ds-skill-card__trigger:focus-visible { outline: 2px solid var(--primary, oklch(0.83 0.104 214)); outline-offset: 4px; } .ds-skill-card__row { display: flex; align-items: center; gap: 0.875rem; } .ds-skill-card__icon { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; flex-shrink: 0; border: 1px solid var(--border, oklch(1 0 0 / 10%)); border-radius: 8px; background: var(--card, oklch(0.21 0.016 258)); color: var(--primary, oklch(0.83 0.104 214)); transition: border-color 300ms; } .ds-skill-card:hover .ds-skill-card__icon { border-color: color-mix(in oklab, var(--primary, oklch(0.83 0.104 214)) 40%, transparent); } .ds-skill-card__name { font-family: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif; font-size: 1rem; font-weight: 600; letter-spacing: -0.025em; color: var(--foreground, oklch(0.94 0.006 250)); } .ds-skill-card__trace { display: block; height: 1px; width: 44px; background: var(--primary, oklch(0.83 0.104 214)); transition: width 300ms cubic-bezier(0, 0, 0.2, 1); } .ds-skill-card:hover .ds-skill-card__trace, .ds-skill-card:has(:focus-visible) .ds-skill-card__trace { width: 100%; }"
+    },
+    {
+      "name": "Service Card",
+      "kind": "card",
+      "refersTo": "card-service",
+      "description": "Card espaçoso de serviço. Numerado no canto superior direito, com ícone em moldura e lista de entregáveis em tags no rodapé.",
+      "html": "<article class=\"ds-service-card\"><div class=\"ds-service-card__head\"><span class=\"ds-service-card__icon\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m18 16 4-4-4-4\"/><path d=\"m6 8-4 4 4 4\"/><path d=\"m14.5 4-5 16\"/></svg></span><span class=\"ds-service-card__num\">01</span></div><h3 class=\"ds-service-card__title\">Desenvolvimento Front-End</h3><p class=\"ds-service-card__body\">Interfaces rápidas e responsivas construídas com React, Next.js, TypeScript e Tailwind CSS.</p></article>",
+      "css": ".ds-service-card { display: flex; flex-direction: column; border: 1px solid var(--border, oklch(1 0 0 / 10%)); border-radius: 14.4px; background: var(--card, oklch(0.21 0.016 258)); padding: 2rem; transition: border-color 300ms; } .ds-service-card:hover { border-color: color-mix(in oklab, var(--primary, oklch(0.83 0.104 214)) 50%, transparent); } .ds-service-card__head { display: flex; align-items: center; justify-content: space-between; } .ds-service-card__icon { display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; border: 1px solid var(--border, oklch(1 0 0 / 10%)); border-radius: 11.2px; background: var(--background, oklch(0.17 0.014 258)); color: var(--primary, oklch(0.83 0.104 214)); transition: border-color 300ms; } .ds-service-card:hover .ds-service-card__icon { border-color: color-mix(in oklab, var(--primary, oklch(0.83 0.104 214)) 50%, transparent); } .ds-service-card__num { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 0.75rem; color: var(--muted-foreground, oklch(0.68 0.014 250)); } .ds-service-card__title { margin: 1.5rem 0 0; font-family: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif; font-size: 1.25rem; font-weight: 600; letter-spacing: -0.025em; color: var(--foreground, oklch(0.94 0.006 250)); } .ds-service-card__body { margin: 0.75rem 0 0; font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: 0.875rem; line-height: 1.625; color: var(--muted-foreground, oklch(0.68 0.014 250)); }"
+    },
+    {
+      "name": "Navigation",
+      "kind": "nav",
+      "description": "Header fixo que muda de forma ao rolar: de largura total sem raio para pílula recolhida com borda, blur e sombra. O snippet mostra o estado recolhido.",
+      "html": "<nav class=\"ds-nav\"><a href=\"#inicio\" class=\"ds-nav__logo\"><span class=\"ds-nav__brace\">{</span> MS <span class=\"ds-nav__brace\">}</span></a><ul class=\"ds-nav__list\"><li><a href=\"#sobre\" class=\"ds-nav__link\">Sobre</a></li><li><a href=\"#projetos\" class=\"ds-nav__link\">Projetos</a></li></ul><a href=\"#contato\" class=\"ds-nav__cta\">Vamos conversar</a></nav>",
+      "css": ".ds-nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem; max-width: 56rem; padding: 0.625rem 1rem 0.625rem 1.5rem; border: 1px solid var(--border, oklch(1 0 0 / 10%)); border-radius: 9999px; background: color-mix(in oklab, var(--background, oklch(0.17 0.014 258)) 80%, transparent); backdrop-filter: blur(12px); box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.2), 0 4px 6px -4px rgb(0 0 0 / 0.2); } .ds-nav__logo { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 0.875rem; letter-spacing: -0.025em; color: var(--foreground, oklch(0.94 0.006 250)); text-decoration: none; } .ds-nav__brace { color: var(--primary, oklch(0.83 0.104 214)); } .ds-nav__list { display: flex; align-items: center; gap: 1.75rem; list-style: none; margin: 0; padding: 0; } .ds-nav__link { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted-foreground, oklch(0.68 0.014 250)); text-decoration: none; transition: color 300ms; } .ds-nav__link:hover { color: var(--foreground, oklch(0.94 0.006 250)); } .ds-nav__cta { padding: 0.5rem 1rem; border: 1px solid color-mix(in oklab, var(--primary, oklch(0.83 0.104 214)) 40%, transparent); border-radius: 9999px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--primary, oklch(0.83 0.104 214)); text-decoration: none; transition: background 300ms, color 300ms; } .ds-nav__cta:hover { background: var(--primary, oklch(0.83 0.104 214)); color: var(--primary-foreground, oklch(0.17 0.02 258)); }"
+    },
+    {
+      "name": "Dialog",
+      "kind": "custom",
+      "refersTo": "dialog",
+      "description": "Modal centralizado sobre backdrop desfocado. Fecha por X, clique fora ou Esc. Recebe a sombra Sobreposto por flutuar acima do plano da página.",
+      "html": "<div class=\"ds-dialog\"><div class=\"ds-dialog__head\"><div class=\"ds-dialog__ident\"><span class=\"ds-dialog__icon\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><circle cx=\"12\" cy=\"12\" r=\"2\"/><ellipse cx=\"12\" cy=\"12\" rx=\"10\" ry=\"4.5\"/></svg></span><h2 class=\"ds-dialog__title\">React</h2></div><button type=\"button\" aria-label=\"Fechar\" class=\"ds-dialog__close\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"><path d=\"M18 6 6 18\"/><path d=\"m6 6 12 12\"/></svg></button></div><p class=\"ds-dialog__body\">Uma ferramenta para montar interfaces em blocos reutilizáveis.</p></div>",
+      "css": ".ds-dialog { width: 28rem; max-width: calc(100vw - 2rem); padding: 1.5rem; border: 1px solid var(--border, oklch(1 0 0 / 10%)); border-radius: 14.4px; background: var(--card, oklch(0.21 0.016 258)); box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25); } .ds-dialog__head { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; } .ds-dialog__ident { display: flex; align-items: center; gap: 0.875rem; } .ds-dialog__icon { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; flex-shrink: 0; border: 1px solid var(--border, oklch(1 0 0 / 10%)); border-radius: 8px; background: var(--background, oklch(0.17 0.014 258)); color: var(--primary, oklch(0.83 0.104 214)); } .ds-dialog__title { margin: 0; font-family: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif; font-size: 1.125rem; font-weight: 600; letter-spacing: -0.025em; color: var(--foreground, oklch(0.94 0.006 250)); } .ds-dialog__close { display: flex; align-items: center; justify-content: center; width: 2.25rem; height: 2.25rem; flex-shrink: 0; border: 1px solid transparent; border-radius: 8px; background: none; color: var(--muted-foreground, oklch(0.68 0.014 250)); cursor: pointer; transition: color 300ms, border-color 300ms; } .ds-dialog__close:hover { border-color: var(--border, oklch(1 0 0 / 10%)); color: var(--foreground, oklch(0.94 0.006 250)); } .ds-dialog__close:focus-visible { outline: 2px solid var(--primary, oklch(0.83 0.104 214)); outline-offset: 2px; } .ds-dialog__body { margin: 1.25rem 0 0; font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: 0.875rem; line-height: 1.625; color: var(--muted-foreground, oklch(0.68 0.014 250)); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "A Planta Cianotípica",
+    "overview": "A cianotipia nasceu como processo de reprodução técnica — o jeito barato de copiar plantas de engenharia — e acabou virando meio artístico sem deixar de ser rigor. Linhas claras sobre fundo azul profundo, uma cor só, nenhuma tinta desperdiçada. Este sistema segue a mesma lógica: fundo azul-quase-preto, fios de 1px como ferramenta primária de separação, anotação em letra técnica, e um único ciano que aparece pouco justamente para significar alguma coisa quando aparece.\n\nEle fala como quem escreve código: direto, sem adorno, sem gordura. Cada elemento existe porque tem função. Mas a contenção é elegante, não áspera — a precisão está tanto no desenho (borda de 1px, raio consistente, o traço do card alinhado à largura exata do ícone acima) quanto no gesto (só o CTA se desloca, e só 2px). O visual não compete com o conteúdo; ele o organiza, do jeito que uma prancha organiza um projeto.\n\nA profundidade nunca vem de sombra em superfície. Vem de degrau tonal — fundo, depois card/40 nas seções alternadas, depois card nas superfícies — sempre reforçado por um fio de 1px. Sombra existe, mas só para o que literalmente flutua acima da página.",
+    "keyCharacteristics": [
+      "Escuro por padrão, plano por convicção",
+      "Um único acento cromático, usado com escassez deliberada",
+      "Separação por fio de 1px, nunca por bloco preenchido ou sombra",
+      "Seções numeradas, com legenda em mono caixa-alta",
+      "Três vozes tipográficas com papéis rígidos e não intercambiáveis",
+      "Ritmo vertical generoso (6–8rem entre seções)"
+    ],
+    "rules": [
+      {
+        "name": "A Regra do Sinal Único",
+        "body": "Existe exatamente um acento cromático. Se uma tela precisa de uma segunda cor para se organizar, o problema é de hierarquia tipográfica ou de espaço, não de paleta. Teste: conte os elementos em ciano numa tela — se passar de três, um deles não merecia.",
+        "section": "colors"
+      },
+      {
+        "name": "A Regra do Fio",
+        "body": "Separação é sempre uma linha de 1px em border. Nunca um bloco preenchido, nunca uma sombra, nunca uma mudança brusca de fundo. Quando duas regiões precisam se distinguir mais do que o fio consegue, use o degrau tonal (card/40) somado ao fio, não no lugar dele.",
+        "section": "colors"
+      },
+      {
+        "name": "A Regra das Três Vozes",
+        "body": "Cada família tem um papel e não empresta: Space Grotesk afirma (títulos), Inter explica (prosa), JetBrains Mono anota (label, número, tag, CTA). Prosa corrida em mono é erro; título em Inter é erro.",
+        "section": "typography"
+      },
+      {
+        "name": "A Regra da Legenda",
+        "body": "Todo label em mono é caixa-alta com letter-spacing de 0.25em (ou 0.1em nas variantes compactas). Mono em caixa-baixa só aparece dentro de citação literal de código na copy.",
+        "section": "typography"
+      },
+      {
+        "name": "A Regra do Plano",
+        "body": "Se o elemento está no fluxo do documento, ele é plano. Sombra é resposta a sair do plano, não a hierarquia. Precisa destacar um card? Use o degrau tonal ou acenda a borda — não adicione sombra.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do usar o fio de 1px (h-px bg-border) como recurso primário de separação — é a ferramenta de desenho deste sistema.",
+      "Do manter o acento em no máximo três ocorrências por tela, seguindo A Regra do Sinal Único.",
+      "Do derivar profundidade de degrau tonal (background → card/40 → card) somado a borda, nunca de sombra.",
+      "Do abrir toda seção nova com o Section Eyebrow, continuando a numeração sequencial.",
+      "Do respeitar A Regra das Três Vozes: Space Grotesk afirma, Inter explica, JetBrains Mono anota.",
+      "Do usar rounded-full apenas para ação e marcador compacto; conteúdo usa rounded-xl ou rounded-2xl.",
+      "Do condicionar qualquer movimento novo a prefers-reduced-motion, como já fazem a rolagem suave e o traço do card de habilidade."
+    ],
+    "donts": [
+      "Don't usar um componente do shadcn com a estética padrão dele. O shadcn entrega o código-fonte para você editar — ao adicionar Button, Input ou qualquer outro, reestilize-o para este sistema antes de colocar em tela. Referência concreta: o botão padrão do shadcn (altura de 32px, rounded-lg, variantes secondary/destructive/link) contradiz a ação real deste sistema, que é a pílula em mono rounded-full com padding 0.75rem 1.5rem.",
+      "Don't adicionar sombra a qualquer coisa que esteja no fluxo da página.",
+      "Don't introduzir uma segunda cor de acento. Falta de hierarquia se resolve com tipografia e espaço.",
+      "Don't deixar o container passar de max-w-6xl. Em telas grandes, a margem cresce — a medida de leitura não.",
+      "Don't usar mono para prosa corrida, nem Inter para título.",
+      "Don't deslocar elementos no hover. A resposta padrão é a borda acender; só o CTA principal se move, e só 2px.",
+      "Don't usar branco puro (#fff) para texto nem preto puro para fundo. Os extremos da paleta são foreground e background.",
+      "Don't montar grade assimétrica de duas colunas quando uma das colunas for muito mais alta que a outra — use a composição empilhada."
+    ]
+  }
+}
