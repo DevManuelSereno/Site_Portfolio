@@ -9,7 +9,6 @@ const eslintConfig = [
   {
     ignores: [
       "node_modules/**",
-      "redesign/**",
       ".next/**",
       "out/**",
       "build/**",

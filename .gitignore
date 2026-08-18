@@ -39,7 +39,3 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-
-# área de preparação do redesign (removida na Etapa H da migração)
-redesign/node_modules
-redesign/.next
