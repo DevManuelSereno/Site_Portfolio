@@ -164,7 +164,6 @@ export type TimelineItem = {
   title: string
   place: string
   period: string
-  kind: 'work' | 'education'
 }
 
 export const experience: TimelineItem[] = [
@@ -172,19 +171,16 @@ export const experience: TimelineItem[] = [
     title: 'Desenvolvedor Front-End',
     place: 'PASS',
     period: 'Nov 2025 — Presente',
-    kind: 'work',
   },
   {
     title: 'Desenvolvedor Front-End Web',
     place: 'Praxis Empresa Júnior — Salvador, BA',
     period: 'Ago 2024 — Nov 2025',
-    kind: 'work',
   },
   {
     title: 'Assessor Comercial',
     place: 'Praxis Empresa Júnior — Salvador, BA',
     period: 'Ago 2024 — Fev 2025',
-    kind: 'work',
   },
 ]
 
@@ -193,13 +189,11 @@ export const education: TimelineItem[] = [
     title: 'Ciência da Computação',
     place: 'UNIFACS — Universidade Salvador',
     period: 'Bacharelado · Concluído em dez/2025',
-    kind: 'education',
   },
   {
     title: 'Ensino Médio',
     place: 'Colégio Antônio Vieira — Salvador, BA',
     period: '2017 — 2021',
-    kind: 'education',
   },
 ]
 
