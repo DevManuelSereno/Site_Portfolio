@@ -20,11 +20,6 @@ export const metadata: Metadata = {
   creator: "Manuel Sereno",
   publisher: "Manuel Sereno",
   robots: "index, follow",
-  icons: {
-    icon: '/icon-site.png',
-    shortcut: '/icon-site.png',
-    apple: '/icon-site.png',
-  },
   openGraph: {
     type: "website",
     locale: "pt_BR",
