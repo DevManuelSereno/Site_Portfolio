@@ -16,7 +16,11 @@ export function SkillMarquee() {
         {items.map((item, i) => (
           <li
             key={`${item.name}-${i}`}
-            className="flex items-center gap-2.5 opacity-50 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
+            // cursor-pointer no <li>, não no ícone: `cursor` é herdado, então
+            // declarar aqui cobre a imagem e o texto de uma vez. Sem isto o
+            // nome mostrava o I-beam de seleção de texto enquanto o ícone
+            // mostrava a seta, o que denunciava que são dois elementos.
+            className="flex cursor-pointer items-center gap-2.5 opacity-50 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
           >
             <Image
               src={item.logo || '/placeholder.svg'}

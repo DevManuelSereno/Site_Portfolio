@@ -9,30 +9,38 @@ import type { Skill } from '@/lib/portfolio-data'
 
 export function SkillDialog({ skill }: { skill: Skill }) {
   /**
-   * Verdadeiro entre fechar o modal e o gatilho perder o foco.
+   * "O usuário está neste card agora" — por ponteiro ou por teclado.
    *
-   * Ao fechar, o Base UI devolve o foco a este botão — comportamento correto
-   * de acessibilidade. Só que, se o fechamento foi por `Esc`, a última
-   * modalidade de interação foi teclado, então o navegador marca esse foco
-   * restaurado como `:focus-visible`. O traço decorativo, que responde a
-   * `:focus-visible`, ficava preso em largura cheia depois do `Esc` — mas não
-   * depois do X nem do clique fora, onde a modalidade é ponteiro.
+   * Governa apenas o traço decorativo. Substitui o par
+   * `group-hover` + `group-has-[:focus-visible]` que fazia esse papel em CSS.
    *
-   * Ou seja: o mesmo estado final (foco no gatilho) renderizava de dois jeitos
-   * conforme a forma de fechar. Esta flag suprime a resposta do traço ao foco
-   * apenas nessa janela, igualando os três caminhos de saída. Navegar até o
-   * card pelo teclado, sem abrir o modal, continua expandindo o traço.
+   * A troca resolve um problema que o CSS sozinho não resolve: `:focus-visible`
+   * é pegajoso por *modalidade*, não por presença. Ao fechar o modal, o Base UI
+   * devolve o foco a este botão — comportamento correto de acessibilidade —, e
+   * se o fechamento foi por `Esc` o navegador marca esse foco restaurado como
+   * `:focus-visible`, porque a última interação foi por teclado. O traço então
+   * ficava cheio e só soltava com Tab ou clique em outro lugar: tirar o mouse
+   * de cima não bastava.
+   *
+   * Com estado explícito, o traço volta ao repouso quando o usuário de fato
+   * *sai* do card — ponteiro saindo ou foco indo embora — em vez de quando o
+   * modal fecha. Sair do modal com o cursor ainda sobre o card mantém o traço
+   * cheio, que é o comportamento natural.
+   *
+   * `onFocus` filtra por `:focus-visible` de propósito: foco por clique não
+   * deve expandir o traço, só foco perceptível ao usuário.
    */
-  const [returningFromDialog, setReturningFromDialog] = useState(false)
+  const [engaged, setEngaged] = useState(false)
 
   return (
-    <Dialog.Root
-      onOpenChange={(open) => {
-        if (!open) setReturningFromDialog(true)
-      }}
-    >
+    <Dialog.Root>
       <Dialog.Trigger
-        onBlur={() => setReturningFromDialog(false)}
+        onPointerEnter={() => setEngaged(true)}
+        onPointerLeave={() => setEngaged(false)}
+        onFocus={(event) => {
+          if (event.currentTarget.matches(':focus-visible')) setEngaged(true)
+        }}
+        onBlur={() => setEngaged(false)}
         className="flex h-full w-full cursor-pointer flex-col gap-4 rounded-xl p-5 text-left outline-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
       >
         <span className="flex items-center gap-3.5">
@@ -51,19 +59,15 @@ export function SkillDialog({ skill }: { skill: Skill }) {
           </span>
         </span>
 
-        {/* Traço decorativo — cresce até a largura do card ao apontar/focar.
-            Em repouso usa a mesma largura do ícone (w-11), alinhando a ponta
-            direita com a dele. group-has-[:focus-visible] em vez de
-            group-focus-within porque :focus-within continuaria satisfeito
-            indefinidamente depois de fechar o modal, já que o foco volta para
-            cá. Não basta sozinho: ver `returningFromDialog` acima, que cobre o
-            fechamento por Esc. Sem papel semântico — é ornamento, por isso
-            fica fora da árvore de acessibilidade, e o foco de verdade é
-            comunicado pelo outline do gatilho. */}
+        {/* Traço decorativo — cresce até a largura do card enquanto o usuário
+            está nele. Em repouso usa a mesma largura do ícone (w-11),
+            alinhando a ponta direita com a dele. Sem papel semântico: é
+            ornamento, por isso fica fora da árvore de acessibilidade, e o foco
+            de verdade é comunicado pelo outline do gatilho. */}
         <span
           aria-hidden="true"
-          className={`block h-px w-11 bg-primary transition-[width] duration-300 ease-out group-hover:w-full motion-reduce:transition-none ${
-            returningFromDialog ? '' : 'group-has-[:focus-visible]:w-full'
+          className={`block h-px bg-primary transition-[width] duration-300 ease-out motion-reduce:transition-none ${
+            engaged ? 'w-full' : 'w-11'
           }`}
         />
       </Dialog.Trigger>
