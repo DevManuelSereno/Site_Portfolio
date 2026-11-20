@@ -122,7 +122,24 @@ Exceções às regras de animação (só na abertura, que dura menos de 3 s e j�
 
 ## Privacidade e cookies (pendência separada)
 
-O `localStorage` da frequência levantou a dúvida sobre política de cookies. Resposta resumida: `localStorage` não é cookie, mas a LGPD/ANPD trata armazenamento no aparelho de forma parecida quando há dado pessoal; aqui a chave guarda só um timestamp de visita, sem identificar ninguém. `[inferido]`, não é parecer jurídico. O Manuel mandou **anotar e não implementar agora**: `/privacidade`, aviso do formulário e confirmar os cookies do Vercel Analytics. **Resolver antes de publicar a Etapa 4.** O Search Console é outra coisa (verificação de propriedade), não é analytics.
+Registrada em 2026-11-20. O Manuel mandou **só anotar, não implementar agora**. **Resolver antes de publicar a Etapa 4.** Tudo abaixo é orientação técnica, não parecer jurídico, e as partes `[inferido]` não foram conferidas em fonte.
+
+**O que ficou levantado**
+
+- A abertura guarda só um timestamp da última visita em `localStorage` (`ms:last-visit`). Não vai para servidor e não identifica ninguém, então o risco de exigir banner de consentimento parece baixo para um site em pt-BR voltado ao Brasil (LGPD). `[inferido]` (A regra de renovação evoluiu depois da nota original: o timestamp só é renovado quando a abertura termina ou não havia o que mostrar; ver "Frequência".)
+- O que realmente pede algo é o **formulário de contato**: coleta nome, e-mail, telefone e mensagem (dado pessoal, LGPD). Falta um aviso de privacidade com responsável, finalidade, quem recebe e como pedir exclusão.
+- **Proposta:** sem banner de cookies e uma página curta `/privacidade` em pt-BR, com link no rodapé, citando: o que o formulário coleta, o timestamp local da abertura, qual ferramenta de métricas é usada e um e-mail para pedidos sobre dados. É rota nova, então entra no sitemap e no JSON-LD.
+- Banner de consentimento só se entrar ferramenta com cookies (Google Analytics, pixel de anúncio).
+- **Search Console** não mexe com cookies nem exige banner: só verifica a posse do site. O domínio atual é `manuelsereno.vercel.app` e não há domínio próprio, então a verificação seria por meta tag ou arquivo. Não é a mesma coisa que o Google Analytics.
+
+**A conferir antes de redigir**
+
+- Se o Vercel Analytics e o Speed Insights (já no `package.json`) realmente não usam cookies.
+- O guia de cookies da ANPD.
+- Como o Next 16 trata a meta tag de verificação do Search Console.
+- Sugestão: `researcher` para confirmar as fontes e depois rascunhar `/privacidade` em pt-BR para o Manuel revisar.
+
+**Como aplicar:** não implementar `/privacidade` nem banner sem o Manuel pedir. Quando a abertura for publicada, lembrar que a pendência existe e perguntar se resolve junto.
 
 ## Ainda não verificado
 
