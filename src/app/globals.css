@@ -90,7 +90,9 @@
     display: none; /* Chrome, Safari, Edge Chromium */
   }
   body {
-    @apply bg-background text-foreground;
+    /* O fundo vem do <html>: um fundo no <body> taparia o campo de fundo
+       (z-index negativo) e a grade não apareceria. */
+    @apply text-foreground;
     font-feature-settings: 'ss01', 'cv01';
   }
   ::selection {
@@ -113,6 +115,298 @@
 
 }
 
+/* Fundo em camadas da página (etapa 3 do docs/PLANO-MOVIMENTO.md). A grade tem
+   linhas de 1px a cada 48px, alinhadas ao centro da tela. A segunda camada é a
+   mesma grade, mais forte, revelada só ao redor da luz. */
+.page-field {
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  pointer-events: none;
+  /* Ponto de repouso: o JS só sobrescreve quando há movimento. */
+  --lx: 62vw;
+  --ly: 38vh;
+}
+
+.page-field > * {
+  position: absolute;
+  inset: 0;
+}
+
+.page-field-grid,
+.page-field-grid-lit {
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--primary) var(--a), transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--primary) var(--a), transparent) 1px, transparent 1px);
+  background-size: 48px 48px;
+  background-position: calc(50% + 24px) calc(50% + 24px);
+}
+
+/* `--a` (opacidade das linhas) é definida em cada camada e usada no seletor
+   comum acima. */
+.page-field-grid {
+  --a: 5%;
+  -webkit-mask-image: radial-gradient(ellipse 120% 100% at 50% 40%, #000 35%, rgb(0 0 0 / 0.5) 100%);
+  mask-image: radial-gradient(ellipse 120% 100% at 50% 40%, #000 35%, rgb(0 0 0 / 0.5) 100%);
+}
+
+.page-field-grid-lit {
+  --a: 24%;
+  -webkit-mask-image: radial-gradient(circle 240px at var(--lx) var(--ly), #000, transparent);
+  mask-image: radial-gradient(circle 240px at var(--lx) var(--ly), #000, transparent);
+}
+
+/* A luz é um quadrado já pintado que só se desloca por transform: mover o
+   centro de um gradiente repintaria a tela inteira a cada quadro. */
+.page-field-glow {
+  inset: auto;
+  top: 0;
+  left: 0;
+  width: 1080px;
+  height: 1080px;
+  background: radial-gradient(
+    circle closest-side,
+    color-mix(in oklab, var(--primary) 13%, transparent),
+    transparent 70%
+  );
+  transform: translate3d(calc(var(--lx) - 540px), calc(var(--ly) - 540px), 0);
+  will-change: transform;
+}
+
+/* Abertura (etapa 4 do docs/PLANO-MOVIMENTO.md). Só existe com `html.intro-on`,
+   posta pelo script do <head>: sem JS, sem a classe ou com movimento reduzido,
+   nada disto aparece. O overlay só cobre; o conteúdo real fica por baixo. */
+.intro,
+.intro-fly {
+  display: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html.intro-on {
+    overflow: hidden;
+  }
+
+  /* Acima do cabeçalho (z-50). */
+  html.intro-on .intro {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    overflow: hidden;
+    background: var(--background);
+  }
+
+  html.intro-on .intro-fly {
+    display: block;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    z-index: 70;
+    /* Mesma largura de .intro-shapes: o voo só alinha com a cota se forem iguais. */
+    width: min(260px, 60vw);
+    overflow: visible;
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  /* O logo voador pousa sobre este e some; até lá o do cabeçalho fica oculto. */
+  html.intro-on .site-logo {
+    opacity: 0;
+  }
+}
+
+/* Estados iniciais = primeiro quadro da timeline, para não piscar enquanto o
+   JS da abertura chega. */
+.intro-grid {
+  --r: 0px;
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--primary) 7%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--primary) 7%, transparent) 1px, transparent 1px);
+  background-size: 48px 48px;
+  /* Mesmo alinhamento da grade da página, que fica quando o overlay some. */
+  background-position: calc(50% + 24px) calc(50% + 24px);
+  -webkit-mask-image: radial-gradient(circle var(--r) at 50% 50%, #000 55%, transparent 100%);
+  mask-image: radial-gradient(circle var(--r) at 50% 50%, #000 55%, transparent 100%);
+}
+
+.intro-axes {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.intro-axes line,
+.intro-axes polyline {
+  fill: none;
+  stroke: color-mix(in oklab, var(--primary) 55%, transparent);
+  stroke-width: 1;
+}
+
+.intro-axes .tk {
+  stroke: color-mix(in oklab, var(--primary) 65%, transparent);
+}
+
+.intro-axes text {
+  fill: color-mix(in oklab, var(--primary) 78%, transparent);
+  font: 400 9px var(--font-mono);
+  letter-spacing: 0.06em;
+}
+
+.intro-axes .rn {
+  fill: color-mix(in oklab, var(--primary) 55%, transparent);
+  font-size: 8px;
+}
+
+.intro-axes .org {
+  fill: none;
+  stroke: var(--primary);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.intro-shapes {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(260px, 60vw);
+  transform: translate(-50%, -50%);
+  overflow: visible;
+}
+
+.intro-cota {
+  opacity: 0;
+}
+
+.intro-cota line {
+  stroke: color-mix(in oklab, var(--primary) 60%, transparent);
+  stroke-width: 1;
+}
+
+.intro-cota text {
+  fill: var(--primary);
+  font: 500 4px var(--font-mono);
+  letter-spacing: 0.1em;
+}
+
+.intro-ruler {
+  position: absolute;
+  background-repeat: no-repeat;
+  background-image:
+    repeating-linear-gradient(var(--dir), color-mix(in oklab, var(--primary) 55%, transparent) 0 1px, transparent 1px 12px),
+    repeating-linear-gradient(var(--dir), color-mix(in oklab, var(--primary) 95%, transparent) 0 1px, transparent 1px 60px);
+}
+
+.intro-ruler-top {
+  --dir: to right;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 14px;
+  background-size: 100% 6px, 100% 14px;
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+.intro-ruler-left {
+  --dir: to bottom;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 14px;
+  background-size: 6px 100%, 14px 100%;
+  transform: scaleY(0);
+  transform-origin: center top;
+}
+
+/* Marcas de corte nos quatro cantos. */
+.intro-mark {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  border: 0 solid color-mix(in oklab, var(--primary) 75%, transparent);
+  transform: scale(0);
+}
+
+.intro-mark-tl {
+  top: 30px;
+  left: 30px;
+  border-top-width: 1px;
+  border-left-width: 1px;
+  transform-origin: top left;
+}
+
+.intro-mark-tr {
+  top: 30px;
+  right: 30px;
+  border-top-width: 1px;
+  border-right-width: 1px;
+  transform-origin: top right;
+}
+
+.intro-mark-bl {
+  bottom: 30px;
+  left: 30px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  transform-origin: bottom left;
+}
+
+.intro-mark-br {
+  bottom: 30px;
+  right: 30px;
+  border-bottom-width: 1px;
+  border-right-width: 1px;
+  transform-origin: bottom right;
+}
+
+/* Carimbo de legenda da prancha: mono em caixa-alta, como as legendas do site. */
+.intro-stamp {
+  position: absolute;
+  right: 64px;
+  bottom: 64px;
+  max-width: calc(100vw - 128px);
+  border: 1px solid color-mix(in oklab, var(--primary) 45%, transparent);
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--foreground);
+  opacity: 0;
+}
+
+.intro-stamp div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.2rem;
+  padding: 0.35rem 0.8rem;
+  white-space: nowrap;
+}
+
+.intro-stamp div + div {
+  border-top: 1px solid color-mix(in oklab, var(--primary) 30%, transparent);
+}
+
+.intro-stamp span {
+  color: var(--muted-foreground);
+}
+
+/* O brilho curto antes do voo vem de `--glow` (0 a 1), animado pelo GSAP. */
+.intro-fly {
+  --glow: 0;
+  filter: drop-shadow(
+    0 0 calc(var(--glow) * 10px) color-mix(in oklab, var(--primary) calc(var(--glow) * 55%), transparent)
+  );
+}
+
+.intro-fly path {
+  fill: var(--primary);
+  fill-rule: evenodd;
+}
+
 @keyframes marquee {
   from {
     transform: translateX(0);
@@ -123,3 +417,82 @@
   }
 }
 
+
+/* Hero (etapa 5 do docs/PLANO-MOVIMENTO.md): rede de nós no fundo e arte à
+   direita. Cores só por tokens. */
+.hero-network {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  /* O fundo do Hero se dissolve nos últimos 140px, sem linha de separação. */
+  -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 140px), transparent);
+  mask-image: linear-gradient(to bottom, #000 calc(100% - 140px), transparent);
+}
+
+.hero-visual {
+  --rx: 0deg;
+  --ry: 0deg;
+}
+
+/* Inclinação só com mouse e sem preferência por menos movimento. */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .hero-visual {
+    transform: perspective(900px) rotateX(var(--rx)) rotateY(var(--ry));
+    transition: transform 0.25s ease-out;
+  }
+}
+
+.hero-visual-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.hero-visual-svg .hv-draw {
+  fill: none;
+  stroke: color-mix(in oklab, var(--foreground) 17%, transparent);
+  stroke-width: 1.2;
+  transition: stroke 0.6s linear;
+}
+
+/* Durante o desenho o traço usa o acento; ao fim volta ao neutro. */
+.hero-visual-svg.hv-drawing .hv-draw {
+  stroke: var(--primary);
+}
+
+.hero-visual-svg .hv-surface {
+  fill: var(--card);
+}
+
+.hero-visual-svg .hv-card {
+  fill: var(--secondary);
+}
+
+.hero-visual-svg .hv-bar {
+  fill: color-mix(in oklab, var(--foreground) 14%, transparent);
+}
+
+.hero-visual-svg .hv-accent {
+  fill: var(--primary);
+  stroke: var(--primary);
+}
+
+.hero-visual-svg .hv-soft {
+  fill: color-mix(in oklab, var(--primary) 22%, transparent);
+  stroke: color-mix(in oklab, var(--primary) 50%, transparent);
+}
+
+.hero-visual-svg .hv-cotas line {
+  stroke: color-mix(in oklab, var(--primary) 60%, transparent);
+  stroke-width: 1;
+}
+
+/* O X de espera só existe durante o desenho; o estado final não o mostra. */
+.hero-visual-svg .hv-x {
+  opacity: 0;
+  stroke: color-mix(in oklab, var(--primary) 35%, transparent);
+  stroke-dasharray: 4 5;
+}

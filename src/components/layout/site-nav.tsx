@@ -3,6 +3,8 @@
 import { useEffect, useState } from 'react'
 import { Menu, X } from 'lucide-react'
 
+import { LOGO_BOLD, LOGO_VIEWBOX } from '@/lib/motion/logo-paths'
+
 const links = [
   { label: 'Início', href: '#inicio' },
   { label: 'Sobre', href: '#sobre' },
@@ -36,12 +38,16 @@ export function SiteNav() {
             : 'max-w-6xl rounded-none border-b border-transparent bg-background/50 px-6 backdrop-blur-sm lg:px-8'
         }`}
       >
-        <a
-          href="#inicio"
-          className="font-mono text-sm tracking-tight text-foreground"
-        >
-          <span className="text-primary">{'{'}</span> MS{' '}
-          <span className="text-primary">{'}'}</span>
+        <a href="#inicio" aria-label="Manuel Sereno, início" className="block text-primary">
+          {/* `site-logo` é o alvo do voo da abertura, que o esconde enquanto ela roda. */}
+          <svg
+            className="site-logo block h-auto w-[74px]"
+            viewBox={LOGO_VIEWBOX}
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path d={LOGO_BOLD} fill="currentColor" />
+          </svg>
         </a>
 
         <ul className="hidden items-center gap-7 md:flex">

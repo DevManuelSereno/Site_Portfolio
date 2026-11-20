@@ -3,7 +3,11 @@ import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
+import { IntroController } from "@/components/intro/intro-controller";
+import { IntroOverlay } from "@/components/intro/intro-overlay";
+import { PageField } from "@/components/layout/page-field";
 import { JsonLd } from "@/components/json-ld";
+import { introGateScript } from "@/lib/motion/intro-gate";
 import { siteConfig } from "@/lib/site-config";
 import "./globals.css";
 
@@ -88,10 +92,20 @@ export default function RootLayout({
       // navegação, e o site é todo âncora com rolagem suave.
       data-scroll-behavior="smooth"
       className={`dark ${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} bg-background`}
+      // O script do <head> põe `intro-on` antes da hidratação.
+      suppressHydrationWarning
     >
+      <head>
+        {/* Síncrono e antes da primeira pintura: decide a abertura sem piscar. */}
+        <script dangerouslySetInnerHTML={{ __html: introGateScript }} />
+      </head>
       <body className="font-sans antialiased">
+        {/* Primeiro filho: com o HTML em fluxo, o overlay chega antes do que ele cobre. */}
+        <IntroOverlay />
+        <PageField />
         <JsonLd />
         {children}
+        <IntroController />
         {process.env.NODE_ENV === "production" && (
           <>
             <Analytics />
