@@ -173,6 +173,44 @@
   will-change: transform;
 }
 
+/* Brilho de borda dos cards (etapa 6). Um anel de 1px, pintado com a luz do
+   cursor e recortado só na borda; aparece no hover. `--gx`/`--gy` vêm do
+   CardGlow. Só reduced-motion e toque o escondem; sem JS, ou com pouca memória
+   ou economia de dados, o hover mostra o anel parado no centro do card. */
+[data-glow]::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s;
+  background: radial-gradient(
+    circle 180px at var(--gx, 50%) var(--gy, 50%),
+    var(--primary),
+    transparent
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box exclude,
+    linear-gradient(#000 0 0);
+}
+
+[data-glow]:hover::after {
+  opacity: 1;
+}
+
+/* Em toque o :hover fica pegajoso e não há cursor para seguir. */
+@media (prefers-reduced-motion: reduce), (hover: none), (pointer: coarse) {
+  [data-glow]::after {
+    display: none;
+  }
+}
+
 /* Abertura (etapa 4 do docs/PLANO-MOVIMENTO.md). Só existe com `html.intro-on`,
    posta pelo script do <head>: sem JS, sem a classe ou com movimento reduzido,
    nada disto aparece. O overlay só cobre; o conteúdo real fica por baixo. */

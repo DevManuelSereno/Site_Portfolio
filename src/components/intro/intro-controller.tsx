@@ -57,7 +57,12 @@ export function IntroController() {
       try {
         const { playIntro } = await import('./intro-timeline')
         // O prazo do script do <head> pode ter vencido enquanto o JS chegava.
-        if (!active || !gate.show) return
+        if (!active) return
+        if (!gate.show) {
+          // O `intro:done` já saiu do <head>; solta o listener para não repeti-lo.
+          teardown()
+          return
+        }
         gate.playing = true
         watchdog = window.setTimeout(() => finish(), INTRO_MAX_MS)
         stop = playIntro(() => finish(true))

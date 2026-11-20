@@ -11,7 +11,7 @@ const iconMap: Record<Service['icon'], LucideIcon> = {
 function ServiceCard({ service, index }: { service: Service; index: number }) {
   const Icon = iconMap[service.icon]
   return (
-    <article className="group relative flex flex-col rounded-2xl border border-border bg-card p-8 transition-colors hover:border-primary/50">
+    <article data-glow className="group relative flex flex-col rounded-2xl border border-border bg-card p-8 transition-colors hover:border-primary/50">
       <div className="flex items-center justify-between">
         <span className="flex h-12 w-12 items-center justify-center rounded-xl border border-border bg-background text-primary transition-colors group-hover:border-primary/50">
           <Icon size={22} />

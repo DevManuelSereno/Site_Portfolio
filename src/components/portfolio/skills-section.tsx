@@ -4,7 +4,7 @@ import { SkillDialog } from '@/components/ui/skill-dialog'
 
 function SkillCard({ skill }: { skill: Skill }) {
   return (
-    <li className="group relative rounded-xl border border-border bg-background transition-colors duration-300 hover:border-primary/50">
+    <li data-glow className="group relative rounded-xl border border-border bg-background transition-colors duration-300 hover:border-primary/50">
       <SkillDialog skill={skill} />
     </li>
   )

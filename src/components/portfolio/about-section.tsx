@@ -1,5 +1,3 @@
-import Image from 'next/image'
-
 import { experience, education, type TimelineItem } from '@/lib/portfolio-data'
 
 function Timeline({
@@ -48,21 +46,22 @@ export function AboutSection() {
 
       <div className="mt-12 grid gap-16 lg:grid-cols-[1.1fr_1fr]">
         <div>
-          {/* Retrato. PLACEHOLDER — a foto atual (public/foto-site-portfolio.jpg)
+          {/* Retrato. PLACEHOLDER: a foto atual (public/foto-site-portfolio.jpg)
               foi preservada mas não é exibida: é noturna, de celular, com fundo
               ocupado e temperatura quente que destoa da paleta azul-ardósia.
-              Ao trocar pela definitiva, mude só o `src` e devolva o alt para
-              "Manuel Sereno" — enquanto for placeholder a imagem é decorativa e
-              não deve anunciar um retrato que não está ali. Considerar também
-              alimentar a propriedade `image` do schema Person. */}
-          <div className="mb-8 h-32 w-32 overflow-hidden rounded-xl border border-border bg-card">
-            <Image
-              src="/placeholder.svg"
-              alt=""
-              width={128}
-              height={128}
-              className="h-full w-full object-cover"
-            />
+              O espaço é um desenho decorativo no tema (sem imagem clara). Ao
+              trocar pela definitiva, substitua o conteúdo do quadrado por um
+              <Image> com alt "Manuel Sereno". Considerar também alimentar a
+              propriedade `image` do schema Person. */}
+          <div
+            aria-hidden="true"
+            className="mb-8 h-32 w-32 overflow-hidden rounded-xl border border-border bg-card text-border"
+          >
+            <svg viewBox="0 0 128 128" className="h-full w-full" fill="none" stroke="currentColor">
+              <rect x="8" y="8" width="112" height="112" rx="6" strokeDasharray="4 4" />
+              <path d="M8 8l112 112M120 8L8 120" />
+              <circle cx="64" cy="64" r="22" className="fill-card" />
+            </svg>
           </div>
 
           <h2 className="font-display text-3xl font-bold leading-tight text-balance sm:text-4xl">

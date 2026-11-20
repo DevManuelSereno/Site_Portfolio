@@ -128,12 +128,14 @@ export function ContactForm() {
         <button
           type="submit"
           disabled={sending}
-          className="group inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 font-mono text-sm font-medium text-primary-foreground transition-transform hover:-translate-y-0.5 disabled:pointer-events-none disabled:opacity-60"
+          className="group inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 font-mono text-sm font-medium text-primary-foreground transition-transform hover:-translate-y-0.5 active:translate-y-0 motion-reduce:transition-none disabled:pointer-events-none disabled:opacity-60"
         >
           {sending ? 'Enviando…' : 'Enviar mensagem'}
           <ArrowUpRight
             size={16}
-            className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+            className={`transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 ${
+              sending ? 'motion-safe:animate-pulse' : ''
+            }`}
           />
         </button>
 
@@ -152,9 +154,14 @@ export function ContactForm() {
                 : 'text-muted-foreground'
           }`}
         >
-          {status.kind === 'success' || status.kind === 'error'
-            ? status.message
-            : ''}
+          {status.kind === 'success' || status.kind === 'error' ? (
+            <span
+              key={status.message}
+              className="inline-block motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-1 motion-safe:duration-300"
+            >
+              {status.message}
+            </span>
+          ) : null}
         </p>
       </div>
 

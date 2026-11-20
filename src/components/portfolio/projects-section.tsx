@@ -1,6 +1,6 @@
 import Image from 'next/image'
-import { ArrowUpRight } from 'lucide-react'
 import { projects, type Project } from '@/lib/portfolio-data'
+import { ProjectsMotion } from '@/components/portfolio/projects-motion'
 
 function Tags({ tags }: { tags: string[] }) {
   return (
@@ -17,25 +17,45 @@ function Tags({ tags }: { tags: string[] }) {
   )
 }
 
-function FeaturedProject({ project }: { project: Project }) {
+function ProjectRow({
+  project,
+  index,
+  total,
+}: {
+  project: Project
+  index: number
+  total: number
+}) {
+  const flip = index % 2 === 1
   return (
-    <article className="group grid gap-8 lg:grid-cols-2 lg:gap-12">
-      <div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-border">
+    <article
+      data-project
+      className="grid items-center gap-8 border-t border-border py-12 first:border-t-0 first:pt-0 lg:min-h-[80svh] lg:grid-cols-2 lg:gap-16 lg:py-16"
+    >
+      <div
+        data-project-media
+        data-glow
+        className={`relative aspect-square overflow-hidden rounded-xl border border-border bg-card ${
+          flip ? 'lg:order-2' : ''
+        }`}
+      >
         <Image
           src={project.image || '/placeholder.svg'}
           alt={`Capa do projeto ${project.title}`}
           fill
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          className="object-cover"
           sizes="(max-width: 1024px) 100vw, 50vw"
-          priority
+          priority={index === 0}
         />
       </div>
-      <div className="flex flex-col justify-center">
-        <div className="flex items-center gap-3 font-mono text-xs uppercase tracking-widest text-primary">
-          <span>Destaque</span>
-          <span className="text-muted-foreground">/ {project.year}</span>
+      <div data-project-text className="flex flex-col justify-center">
+        <div className="flex items-center gap-3 font-mono text-xs uppercase tracking-widest">
+          <span className="text-primary">
+            {String(index + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
+          </span>
+          <span className="text-muted-foreground">{project.year}</span>
         </div>
-        <h3 className="mt-4 font-display text-4xl font-bold tracking-tight text-balance">
+        <h3 className="mt-4 font-display text-3xl font-bold tracking-tight text-balance sm:text-4xl">
           {project.title}
         </h3>
         <p className="mt-4 max-w-md text-base leading-relaxed text-muted-foreground">
@@ -49,45 +69,7 @@ function FeaturedProject({ project }: { project: Project }) {
   )
 }
 
-function ProjectCard({ project }: { project: Project }) {
-  return (
-    <article className="group flex flex-col">
-      <div className="relative aspect-[16/10] overflow-hidden rounded-xl border border-border">
-        <Image
-          src={project.image || '/placeholder.svg'}
-          alt={`Capa do projeto ${project.title}`}
-          fill
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
-          sizes="(max-width: 768px) 100vw, 50vw"
-        />
-      </div>
-      <div className="mt-5 flex items-start justify-between gap-4">
-        <div>
-          <div className="flex items-center gap-3 font-mono text-xs text-muted-foreground">
-            <span>{project.year}</span>
-          </div>
-          <h3 className="mt-1 font-display text-2xl font-semibold tracking-tight">
-            {project.title}
-          </h3>
-        </div>
-        <ArrowUpRight
-          size={20}
-          className="mt-1 shrink-0 text-muted-foreground transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary"
-        />
-      </div>
-      <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-        {project.description}
-      </p>
-      <div className="mt-4">
-        <Tags tags={project.tags} />
-      </div>
-    </article>
-  )
-}
-
 export function ProjectsSection() {
-  const [featured, ...rest] = projects
-
   return (
     <section
       id="projetos"
@@ -106,14 +88,16 @@ export function ProjectsSection() {
       </h2>
 
       <div className="mt-14">
-        <FeaturedProject project={featured} />
-      </div>
-
-      <div className="mt-16 grid gap-x-10 gap-y-16 border-t border-border pt-16 sm:grid-cols-2">
-        {rest.map((project) => (
-          <ProjectCard key={project.id} project={project} />
+        {projects.map((project, index) => (
+          <ProjectRow
+            key={project.id}
+            project={project}
+            index={index}
+            total={projects.length}
+          />
         ))}
       </div>
+      <ProjectsMotion />
     </section>
   )
 }
