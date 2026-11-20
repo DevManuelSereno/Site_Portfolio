@@ -252,3 +252,5 @@ Card clicável que abre o modal da tecnologia. O card inteiro é o alvo de cliqu
 - **Don't** deslocar elementos no hover. A resposta padrão é a borda acender; só o CTA principal se move, e só 2px.
 - **Don't** usar branco puro (`#fff`) para texto nem preto puro para fundo. Os extremos da paleta são `foreground` e `background`.
 - **Don't** montar grade assimétrica de duas colunas quando uma das colunas for muito mais alta que a outra — use a composição empilhada.
+
+> Movimento e fundo em camadas (grade, luz, abertura, brilho de borda) estão em `MOVIMENTO.md`, que relaxa "não deslocar no hover", o limite de três acentos e as Regras do Fio e do Plano para essas camadas.
