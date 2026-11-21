@@ -76,7 +76,7 @@ export function ProjectsSection() {
       className="mx-auto max-w-6xl scroll-mt-24 px-6 py-24 lg:px-8 lg:py-32"
     >
       <div className="flex items-center gap-4">
-        <span className="font-mono text-sm text-primary">04</span>
+        <span className="font-mono text-sm text-primary">03</span>
         <span className="h-px flex-1 bg-border" />
         <span className="font-mono text-xs uppercase tracking-[0.25em] text-muted-foreground">
           Projetos

@@ -12,7 +12,6 @@
     "test:smoke": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test tests/smoke-html.test.mjs"
   },
   "dependencies": {
-    "@base-ui/react": "^1.7.0",
     "@usefluid/motion": "0.1.2",
     "@vercel/speed-insights": "^1.2.0",
     "class-variance-authority": "^0.7.1",

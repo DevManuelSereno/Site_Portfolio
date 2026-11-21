@@ -80,7 +80,7 @@ export function AboutSection() {
             <p>
               Atuo como desenvolvedor front-end na{' '}
               <span className="text-foreground">PASS</span>, onde construo
-              interfaces em Next.js, TypeScript e Tailwind CSS, integro APIs e
+              interfaces em React, Next.js, TypeScript e Tailwind CSS, integro APIs e
               cuido da cobertura de idiomas da plataforma com i18n. Antes disso
               passei um ano e três meses na{' '}
               <span className="text-foreground">Praxis Empresa Júnior</span>,

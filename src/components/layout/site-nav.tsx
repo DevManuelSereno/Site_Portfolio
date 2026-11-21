@@ -6,9 +6,7 @@ import { Menu, X } from 'lucide-react'
 import { LOGO_BOLD, LOGO_VIEWBOX } from '@/lib/motion/logo-paths'
 
 const links = [
-  { label: 'Início', href: '#inicio' },
   { label: 'Sobre', href: '#sobre' },
-  { label: 'Habilidades', href: '#habilidades' },
   { label: 'Serviços', href: '#servicos' },
   { label: 'Projetos', href: '#projetos' },
   { label: 'Contato', href: '#contato' },
