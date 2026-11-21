@@ -26,14 +26,14 @@ export function SiteNav() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled || open ? 'px-4 pt-4 sm:pt-5' : 'px-0 pt-0'
+        scrolled || open ? 'px-4 pt-4 sm:pt-5' : 'px-0 pt-4 sm:pt-5'
       }`}
     >
       <nav
         className={`mx-auto flex items-center justify-between gap-4 py-2.5 pl-6 transition-all duration-300 ${
           scrolled || open
             ? 'max-w-4xl rounded-full border border-border bg-background/80 px-4 shadow-lg shadow-black/20 backdrop-blur-md'
-            : 'max-w-6xl rounded-none border-b border-transparent bg-background/50 px-6 backdrop-blur-sm lg:px-8'
+            : 'max-w-6xl rounded-none border-b border-transparent bg-transparent px-6 backdrop-blur-none lg:px-8'
         }`}
       >
         <a href="#inicio" aria-label="Manuel Sereno, início" className="block text-primary">
@@ -53,9 +53,20 @@ export function SiteNav() {
             <li key={link.href}>
               <a
                 href={link.href}
-                className="font-mono text-xs uppercase tracking-widest text-muted-foreground transition-colors hover:text-foreground"
+                className={`group relative font-mono text-xs uppercase tracking-widest transition-colors hover:text-foreground focus-visible:text-foreground ${
+                  scrolled
+                    ? 'text-muted-foreground'
+                    : // Sem fundo, as linhas da grade passam por baixo das letras: mais
+                      // claro e um halo na cor do fundo as separam do desenho.
+                      'text-foreground/80 [text-shadow:0_0_10px_var(--background),0_0_4px_var(--background)]'
+                }`}
               >
                 {link.label}
+                {/* Fio de 1px que cresce da esquerda: ornamento, fora da árvore de acessibilidade. */}
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-x-0 -bottom-1.5 h-px origin-left scale-x-0 bg-primary transition-transform duration-200 group-hover:scale-x-100 group-focus-visible:scale-x-100 motion-reduce:transition-none"
+                />
               </a>
             </li>
           ))}
