@@ -13,7 +13,6 @@
   "dependencies": {
     "@base-ui/react": "^1.7.0",
     "@usefluid/motion": "0.1.2",
-    "@vercel/analytics": "^1.6.1",
     "@vercel/speed-insights": "^1.2.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",

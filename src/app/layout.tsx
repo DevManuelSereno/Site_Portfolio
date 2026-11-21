@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
-import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import { IntroController } from "@/components/intro/intro-controller";
@@ -106,12 +105,7 @@ export default function RootLayout({
         <JsonLd />
         {children}
         <IntroController />
-        {process.env.NODE_ENV === "production" && (
-          <>
-            <Analytics />
-            <SpeedInsights />
-          </>
-        )}
+        {process.env.NODE_ENV === "production" && <SpeedInsights />}
       </body>
     </html>
   );
