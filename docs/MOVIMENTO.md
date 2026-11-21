@@ -44,5 +44,3 @@
 - LCP, FCP, INP, Lighthouse e `ui-check` nunca foram medidos com a página pintando.
 - Safari, Firefox e mobile real; Googlebot (Inspeção de URL, depois de publicar).
 - Privacidade e cookies (`/privacidade`): resolver antes de publicar a abertura.
-- Lockfiles: o `pnpm-lock.yaml` commitado não tem `gsap` nem `@usefluid/motion`.
-- Pontos nas interseções de Habilidades: ideia desligada, sem código.

@@ -10,7 +10,7 @@
 
 ## 📋 Sobre o Projeto
 
-Este é o portfólio pessoal de **Manuel Sereno**, desenvolvedor Front-End e UI/UX Designer localizado em Salvador, Bahia. O projeto apresenta uma interface moderna, responsiva e otimizada, showcasing projetos, habilidades e experiências profissionais.
+Este é o portfólio pessoal de **Manuel Sereno**, desenvolvedor Front-End e UI/UX Designer localizado em Salvador, Bahia. O projeto apresenta uma interface moderna, responsiva e otimizada, showcasing projetos e experiências profissionais.
 
 ### ✨ Características Principais
 
@@ -69,7 +69,6 @@ src/
 │   ├── portfolio/        # Seções do portfólio
 │   │   ├── Hero.tsx      # Seção inicial/apresentação
 │   │   ├── About.tsx     # Sobre mim
-│   │   ├── Skills.tsx    # Habilidades técnicas
 │   │   ├── Projects.tsx  # Projetos desenvolvidos
 │   │   └── Contact.tsx   # Formulário de contato
 │   └── ui/              # Componentes de interface
@@ -96,18 +95,13 @@ src/
    - Experiências e trajetória
    - Animações de entrada suaves
 
-3. **Habilidades Técnicas**
-   - Stack tecnológica organizada
-   - Badges interativas
-   - Categorização por área
-
-4. **Projetos**
+3. **Projetos**
    - Grid responsivo de projetos
    - Modal detalhado para cada projeto
    - Links para GitHub e demonstrações
    - Imagens otimizadas com Next.js Image
 
-5. **Contato**
+4. **Contato**
    - Formulário completo com validação
    - Envio de emails automatizado
    - Rate limiting para segurança
