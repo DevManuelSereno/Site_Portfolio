@@ -9,8 +9,23 @@ interface ContactFormData {
   message: string;
 }
 
+// Os campos vêm de um formulário público e entram num HTML: sem escape, quem
+// envia injeta marcação ou links no e-mail que chega à caixa do dono.
+const escapeHtml = (value: string) =>
+  value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+
 // Email templates para Resend
 const createNotificationEmail = (data: ContactFormData) => {
+  const name = escapeHtml(data.name);
+  const email = escapeHtml(data.email);
+  const phone = data.phone ? escapeHtml(data.phone) : 'Não informado';
+  const message = escapeHtml(data.message);
+
   return {
     from: 'Portfolio <onboarding@resend.dev>',
     reply_to: [data.email], // Reply vai direto para quem enviou
@@ -47,95 +62,27 @@ const createNotificationEmail = (data: ContactFormData) => {
             <div class="content">
               <div class="field">
                 <div class="label">👤 Nome</div>
-                <div class="value">${data.name}</div>
+                <div class="value">${name}</div>
               </div>
               
               <div class="field">
                 <div class="label">📧 Email</div>
-                <div class="value"><a href="mailto:${data.email}" class="email-link">${data.email}</a></div>
+                <div class="value"><a href="mailto:${email}" class="email-link">${email}</a></div>
               </div>
               
               <div class="field">
                 <div class="label">📱 Telefone</div>
-                <div class="value">${data.phone || 'Não informado'}</div>
+                <div class="value">${phone}</div>
               </div>
               
               <div class="field">
                 <div class="label">💬 Mensagem</div>
-                <div class="message-value">${data.message}</div>
+                <div class="message-value">${message}</div>
               </div>
             </div>
             <div class="footer">
               <p><strong>Mensagem enviada em:</strong> ${new Date().toLocaleString('pt-BR')}</p>
               <p>Responda diretamente clicando no email acima 📧</p>
-            </div>
-          </div>
-        </body>
-      </html>
-    `
-  };
-};
-
-const createAutoReplyEmail = (data: ContactFormData) => {
-  return {
-    from: 'Manuel Sereno <onboarding@resend.dev>',
-    reply_to: ['nelfsereno@gmail.com'],
-    to: [data.email],
-    subject: '✨ Obrigado pelo seu contato - Manuel Sereno',
-    html: `
-      <!DOCTYPE html>
-      <html>
-        <head>
-          <meta charset="utf-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <style>
-            body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 20px; background-color: #f8fafc; }
-            .container { max-width: 600px; margin: 0 auto; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); }
-            .header { background: linear-gradient(135deg, #00CDF6 0%, #009BEC 70%, #008BE1 100%); color: white; padding: 30px 20px; text-align: center; }
-            .header h1 { margin: 0; font-size: 24px; font-weight: 600; }
-            .content { padding: 30px 20px; }
-            .message-quote { padding: 16px; background: #f0f9ff; border-left: 4px solid #00CDF6; border-radius: 8px; margin: 20px 0; font-style: italic; }
-            .contact-info { background: #f8fafc; padding: 20px; border-radius: 8px; margin: 20px 0; }
-            .contact-item { margin: 8px 0; }
-            .contact-link { color: #00CDF6; text-decoration: none; }
-            .contact-link:hover { text-decoration: underline; }
-            .signature { margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; }
-            .footer { padding: 20px; background: #f8fafc; text-align: center; font-size: 14px; color: #6b7280; border-top: 1px solid #e5e7eb; }
-          </style>
-        </head>
-        <body>
-          <div class="container">
-            <div class="header">
-              <h1>✨ Obrigado pelo seu contato!</h1>
-            </div>
-            <div class="content">
-              <p>Olá <strong>${data.name}</strong>,</p>
-              
-              <p>Recebi sua mensagem e fico muito feliz com seu interesse! 🚀</p>
-              
-              <p>Entrarei em contato com você em breve para discutirmos seu projeto. Enquanto isso, fique à vontade para explorar meu portfólio e conhecer mais sobre meu trabalho.</p>
-              
-              <div class="message-quote">
-                <strong>Sua mensagem:</strong><br>
-                ${data.message.replace(/\n/g, '<br>')}
-              </div>
-              
-              <div class="contact-info">
-                <h3 style="margin-top: 0; color: #374151;">📞 Você também pode me encontrar em:</h3>
-                <div class="contact-item">📧 Email: <a href="mailto:nelfsereno@gmail.com" class="contact-link">nelfsereno@gmail.com</a></div>
-                <div class="contact-item">📱 WhatsApp: <a href="https://wa.me/5571999956042" class="contact-link">(71) 99995-6042</a></div>
-                <div class="contact-item">💼 LinkedIn: <a href="https://linkedin.com/in/dev-manuel-sereno" class="contact-link">@dev-manuel-sereno</a></div>
-                <div class="contact-item">🐱 GitHub: <a href="https://github.com/DevManuelSereno" class="contact-link">@DevManuelSereno</a></div>
-              </div>
-              
-              <div class="signature">
-                <p>Até breve!</p>
-                <p><strong>Manuel Sereno</strong><br>
-                <span style="color: #6b7280;">Desenvolvedor Front-End & UI/UX Designer</span></p>
-              </div>
-            </div>
-            <div class="footer">
-              <p>Esta é uma resposta automática. Responderei pessoalmente em breve! 🚀</p>
             </div>
           </div>
         </body>
@@ -265,7 +212,6 @@ export async function POST(request: NextRequest) {
 
     // Preparar emails
     const notificationEmail = createNotificationEmail(contactData);
-    const autoReplyEmail = createAutoReplyEmail(contactData);
 
     // Enviar email de notificação
     const notificationResult = await resend.emails.send(notificationEmail);
@@ -275,18 +221,10 @@ export async function POST(request: NextRequest) {
       throw new Error('Falha ao enviar notificação');
     }
 
-    // Enviar auto-reply
-    const autoReplyResult = await resend.emails.send(autoReplyEmail);
-    
-    if (autoReplyResult.error) {
-      console.error('Erro ao enviar auto-reply:', autoReplyResult.error);
-      // Não falha se auto-reply der erro, só loga
-    }
-
     // Resposta de sucesso
     return NextResponse.json({
       success: true,
-      message: 'Mensagem enviada com sucesso! ✨ Você receberá uma confirmação por email em instantes.'
+      message: 'Mensagem enviada. Respondo em breve.'
     });
 
   } catch (error) {

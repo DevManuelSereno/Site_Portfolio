@@ -1,13 +1,15 @@
 'use client'
 
-import { useId, useState } from 'react'
-import { ArrowUpRight } from 'lucide-react'
+import Link from 'next/link'
+import { useEffect, useId, useState } from 'react'
+import { ArrowUpRight, Check } from 'lucide-react'
 
 type Status =
   | { kind: 'idle' }
   | { kind: 'sending' }
-  | { kind: 'success'; message: string }
   | { kind: 'error'; message: string; details?: string[] }
+
+const TOAST_MS = 6000
 
 const EMPTY_FORM = { name: '', phone: '', email: '', message: '' }
 
@@ -21,6 +23,13 @@ export function ContactForm() {
   const id = useId()
   const [form, setForm] = useState(EMPTY_FORM)
   const [status, setStatus] = useState<Status>({ kind: 'idle' })
+  const [toast, setToast] = useState<string | null>(null)
+
+  useEffect(() => {
+    if (!toast) return
+    const timer = setTimeout(() => setToast(null), TOAST_MS)
+    return () => clearTimeout(timer)
+  }, [toast])
 
   const sending = status.kind === 'sending'
 
@@ -44,7 +53,8 @@ export function ContactForm() {
 
       if (result.success) {
         setForm(EMPTY_FORM)
-        setStatus({ kind: 'success', message: result.message })
+        setStatus({ kind: 'idle' })
+        setToast(result.message)
       } else {
         setStatus({
           kind: 'error',
@@ -124,7 +134,19 @@ export function ContactForm() {
         />
       </div>
 
-      <div className="mt-8 flex flex-wrap items-center gap-6">
+      <p className="mt-6 max-w-xl text-xs leading-relaxed text-muted-foreground">
+        Ao enviar, você concorda que eu use seu nome, e-mail e telefone apenas
+        para responder a esta mensagem. Detalhes na{' '}
+        <Link
+          href="/privacidade"
+          className="text-foreground underline underline-offset-4 transition-colors hover:text-primary"
+        >
+          política de privacidade
+        </Link>
+        .
+      </p>
+
+      <div className="mt-6 flex flex-wrap items-center gap-6">
         <button
           type="submit"
           disabled={sending}
@@ -147,14 +169,10 @@ export function ContactForm() {
           role="status"
           aria-live="polite"
           className={`text-sm ${
-            status.kind === 'success'
-              ? 'text-primary'
-              : status.kind === 'error'
-                ? 'text-destructive'
-                : 'text-muted-foreground'
+            status.kind === 'error' ? 'text-destructive' : 'text-muted-foreground'
           }`}
         >
-          {status.kind === 'success' || status.kind === 'error' ? (
+          {status.kind === 'error' ? (
             <span
               key={status.message}
               className="inline-block motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-1 motion-safe:duration-300"
@@ -172,6 +190,28 @@ export function ContactForm() {
           ))}
         </ul>
       ) : null}
+
+      {/* Toast provisório: o sucesso sai do <p> de status e vem aqui, com
+          aria-live para o leitor de tela anunciar. */}
+      <div
+        role="status"
+        aria-live="polite"
+        className="pointer-events-none fixed inset-x-4 bottom-6 z-50 flex justify-center sm:inset-x-auto sm:right-6 sm:justify-end"
+      >
+        {toast ? (
+          <div className="pointer-events-auto flex items-center gap-3 rounded-xl border border-border bg-background px-4 py-3 text-sm text-foreground motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-2 motion-safe:duration-300">
+            <Check size={16} className="shrink-0 text-primary" aria-hidden="true" />
+            <span>{toast}</span>
+            <button
+              type="button"
+              onClick={() => setToast(null)}
+              className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-foreground"
+            >
+              Fechar
+            </button>
+          </div>
+        ) : null}
+      </div>
     </form>
   )
 }
