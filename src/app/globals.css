@@ -1,6 +1,7 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 @import 'shadcn/tailwind.css';
+@import 'lenis/dist/lenis.css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -98,6 +99,11 @@
   ::selection {
     background: oklch(0.83 0.104 214 / 0.24);
   }
+}
+
+/* Com o Lenis ativo quem anima é ele; o smooth nativo (do @layer base, por isso fora de camada) brigaria. */
+html.lenis {
+  scroll-behavior: auto;
 }
 
 @layer utilities {

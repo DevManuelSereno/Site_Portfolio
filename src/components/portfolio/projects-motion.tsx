@@ -1,79 +1,47 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState, type ComponentType } from 'react'
 
 import { LOW_MEMORY_GB, lowMotionReason, readMotionSignals } from '@/lib/motion/capability'
 
-/**
- * Entrada em scroll dos projetos: a imagem se revela por `clip-path` e o texto
- * sobe e aparece. Só em telas largas e com movimento; no celular e com
- * reduced-motion a lista fica como o HTML a serve. O conteúdo está sempre no
- * HTML, e o GSAP só entra por import() dinâmico quando vai ser usado.
- */
-export function ProjectsMotion() {
-  useEffect(() => {
-    if (lowMotionReason(readMotionSignals(), LOW_MEMORY_GB)) return
+type Showcase = ComponentType<{ reanchorHash: boolean }>
 
-    // Mobile não anima: nem baixa o GSAP.
-    if (!window.matchMedia('(min-width: 1024px)').matches) return
+// Já carregado nesta visita (voltar com Back): monta no mesmo commit da página, antes de a
+// rolagem ser restaurada, porque ela foi gravada com o layout fixado.
+let loaded: Showcase | null = null
+// A âncora da URL (/#contato) só é refeita na primeira montagem e se a pessoa ainda não rolou.
+let touched = false
+
+/** Porta da versão fixada: sem movimento nada é baixado; com, ela e o GSAP vêm perto da seção, para não pesar a carga. */
+export function ProjectsMotion() {
+  const [Showcase, setShowcase] = useState<Showcase | null>(() => loaded)
+  const [reanchorHash, setReanchorHash] = useState(false)
+
+  useEffect(() => {
+    if (loaded || lowMotionReason(readMotionSignals(), LOW_MEMORY_GB)) return
     const section = document.getElementById('projetos')
     if (!section) return
 
-    let cancelled = false
-    let cleanup: (() => void) | undefined
-
-    const run = async () => {
-      const [{ gsap }, { ScrollTrigger }] = await Promise.all([
-        import('gsap'),
-        import('gsap/ScrollTrigger'),
-      ])
-      if (cancelled) return
-      gsap.registerPlugin(ScrollTrigger)
-
-      const mm = gsap.matchMedia()
-      mm.add('(min-width: 1024px) and (prefers-reduced-motion: no-preference)', () => {
-        document.querySelectorAll<HTMLElement>('[data-project]').forEach((row) => {
-          const media = row.querySelector('[data-project-media]')
-          const text = row.querySelector('[data-project-text]')?.children
-          const scrollTrigger = { trigger: row, start: 'top 70%', once: true }
-          if (media) {
-            // fromTo e clearProps: sem clip-path no CSS o GSAP não interpola até
-            // `none`, e um clip-path inline no fim recortaria o ::after do CardGlow.
-            gsap.fromTo(
-              media,
-              { clipPath: 'inset(0 0 100% 0)' },
-              {
-                clipPath: 'inset(0 0 0% 0)',
-                duration: 0.9,
-                ease: 'power3.out',
-                clearProps: 'clipPath',
-                scrollTrigger,
-              },
-            )
-          }
-          if (text) {
-            gsap.from(text, {
-              y: 24,
-              opacity: 0,
-              duration: 0.7,
-              delay: 0.2,
-              stagger: 0.1,
-              ease: 'power2.out',
-              scrollTrigger,
-            })
-          }
-        })
-      })
-      cleanup = () => mm.revert()
+    const inputs = ['wheel', 'touchstart', 'keydown', 'pointerdown'] as const
+    const onInput = () => {
+      touched = true
     }
+    inputs.forEach((type) => window.addEventListener(type, onInput, { passive: true, capture: true }))
 
-    // O GSAP só é baixado quando a seção está perto da tela, para não pesar a
-    // carga inicial.
+    let cancelled = false
     const observer = new IntersectionObserver(
       (entries) => {
         if (!entries.some((entry) => entry.isIntersecting)) return
         observer.disconnect()
-        void run()
+        import('./projects-showcase')
+          .then(({ ProjectsShowcase }) => {
+            loaded = ProjectsShowcase
+            if (cancelled) return
+            setReanchorHash(!touched)
+            setShowcase(() => ProjectsShowcase)
+          })
+          // Sem o módulo, a lista do HTML continua lá.
+          .catch(() => {})
       },
       { rootMargin: '1500px 0px' },
     )
@@ -82,9 +50,9 @@ export function ProjectsMotion() {
     return () => {
       cancelled = true
       observer.disconnect()
-      cleanup?.()
+      inputs.forEach((type) => window.removeEventListener(type, onInput, { capture: true }))
     }
   }, [])
 
-  return null
+  return Showcase ? <Showcase reanchorHash={reanchorHash} /> : null
 }

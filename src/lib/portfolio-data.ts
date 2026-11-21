@@ -99,6 +99,11 @@ export type Project = {
   year: string
   description: string
   tags: string[]
+  /** Nome do arquivo na aba da janela de editor. */
+  file: string
+  /** "tipo" do README do projeto. Os valores são provisórios: sugeridos, ainda sem o ok do Manuel. */
+  kind: string
+  // Captura quadrada provisória: trocar aqui pela 16:10 quando o Manuel enviar.
   image: string
   href?: string
 }
@@ -106,6 +111,8 @@ export type Project = {
 export const projects: Project[] = [
   {
     id: 'giuliana-ragno',
+    file: 'giuliana-ragno.tsx',
+    kind: 'Identidade + site',
     title: 'Giuliana Ragno PSI',
     year: '2025',
     description:
@@ -115,6 +122,8 @@ export const projects: Project[] = [
   },
   {
     id: 'biblioteca-virtual',
+    file: 'biblioteca-virtual.tsx',
+    kind: 'Aplicação web',
     title: 'Biblioteca Virtual',
     year: '2025',
     description:
@@ -124,6 +133,8 @@ export const projects: Project[] = [
   },
   {
     id: 'espaco-psi',
+    file: 'espaco-psi.html',
+    kind: 'Site institucional',
     title: 'Espaço Psi',
     year: '2024',
     description:
@@ -133,6 +144,8 @@ export const projects: Project[] = [
   },
   {
     id: 'silksong',
+    file: 'silksong.html',
+    kind: 'Fan page',
     title: 'Hollow Knight — Silksong',
     year: '2024',
     description:
@@ -142,6 +155,8 @@ export const projects: Project[] = [
   },
   {
     id: 'demanda-frontend',
+    file: 'demanda-frontend.html',
+    kind: 'Estudo',
     title: 'Demanda Frontend Praxis',
     year: '2024',
     description:

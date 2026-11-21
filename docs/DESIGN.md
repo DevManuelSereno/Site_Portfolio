@@ -209,10 +209,21 @@ O sistema **não usa** um componente de botão genérico. As ações são pílul
 ### Navigation
 Header fixo que **muda de forma ao rolar**: começa em largura total (`max-w-6xl`), fundo translúcido e sem raio; após 24px de rolagem, recolhe para uma pílula (`max-w-4xl`, `rounded-full`) com borda, `backdrop-blur-md` e a sombra Flutuante. A transição é de 300ms.
 
-Links em `font-mono text-xs` caixa-alta com `tracking-widest`, em `muted-foreground`, virando `foreground` no hover. O CTA do header é uma pílula de contorno em ciano que inverte para preenchimento sólido no hover. Em telas abaixo de `md`, o menu vira painel expansível abaixo da barra.
+No topo, o fundo é transparente e sem blur, para a grade da planta passar por trás; os links ficam em `foreground/80` com um halo de `text-shadow` na cor do fundo, para as linhas da grade não cruzarem as letras. Depois da rolagem, o fundo e o blur da pílula voltam.
+
+Links em `font-mono text-xs` caixa-alta com `tracking-widest`, virando `foreground` no hover e no foco por teclado, com um fio ciano de 1px que cresce da esquerda sob a palavra (`scaleX`, 200ms). O CTA do header é uma pílula de contorno em ciano que inverte para preenchimento sólido no hover. Em telas abaixo de `md`, o menu vira painel expansível abaixo da barra.
 
 ### Section Eyebrow (assinatura)
 O componente mais característico do sistema, presente no topo de todas as quatro seções internas: um número sequencial de dois dígitos em Ciano React (`font-mono text-sm`), um fio de 1px que ocupa todo o espaço disponível (`h-px flex-1 bg-border`), e o nome da seção em mono caixa-alta com `tracking-[0.25em]` em `muted-foreground`. É a legenda da prancha — o elemento que mais literalmente encarna o North Star.
+
+### Janela de editor (Projetos)
+A seção Projetos, no desktop, é uma janela de editor fixada na tela: borda de 1px e `rounded-xl`, altura própria `clamp(460px, 62svh, 540px)`. Em cima, abas com o nome de arquivo de cada projeto (`giuliana-ragno.tsx`, `espaco-psi.html`) em `font-mono text-xs`, a ativa marcada por um ponto ciano. À esquerda, o projeto como um README com números de linha (`// projeto 03`, título, `# tipo · ano`, descrição, `tipo` e `stack`); à direita, o `// preview` com a captura dentro de uma moldura de navegador. Embaixo, uma barra de status: `main · arquivo`, contador `03 / 05`, um fio de progresso e o link "pular ↓". Tudo em tokens do tema, sem sombra.
+
+### Moldura de navegador
+Retângulo `rounded-lg` com borda de 1px, três pontos e uma barra de endereço vazia em cima, e a captura do projeto embaixo, em 16:10 e `object-cover`. É estática: o preview não se move. Serve à janela de editor, aos blocos das telas menores e à lista.
+
+### Projetos em telas menores
+Abaixo de 1024px, a seção também fica fixada, mas sem a janela: cada projeto é um bloco sem fundo nem borda (contador e ano, título, descrição, tags, e a moldura embaixo, até 720px de largura). A rolagem troca o bloco atual pelo próximo, com fade e uma leve subida, até o último. Com reduced-motion, economia de dados, pouca memória, sem JavaScript ou em janelas baixas, fica a lista simples.
 
 ## Do's and Don'ts
 
@@ -235,4 +246,4 @@ O componente mais característico do sistema, presente no topo de todas as quatr
 - **Don't** usar branco puro (`#fff`) para texto nem preto puro para fundo. Os extremos da paleta são `foreground` e `background`.
 - **Don't** montar grade assimétrica de duas colunas quando uma das colunas for muito mais alta que a outra — use a composição empilhada.
 
-> Movimento e fundo em camadas (grade, luz, abertura, brilho de borda) estão em `MOVIMENTO.md`, que relaxa "não deslocar no hover", o limite de três acentos e as Regras do Fio e do Plano para essas camadas.
+> Movimento e fundo em camadas (grade, luz, abertura, brilho de borda, seção Projetos fixada e rolagem suave Lenis) estão em `MOVIMENTO.md`, que relaxa "não deslocar no hover", o limite de três acentos e as Regras do Fio e do Plano para essas camadas.

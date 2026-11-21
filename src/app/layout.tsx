@@ -5,6 +5,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { IntroController } from "@/components/intro/intro-controller";
 import { IntroOverlay } from "@/components/intro/intro-overlay";
 import { PageField } from "@/components/layout/page-field";
+import { SmoothScroll } from "@/components/layout/smooth-scroll";
 import { JsonLd } from "@/components/json-ld";
 import { introGateScript } from "@/lib/motion/intro-gate";
 import { siteConfig } from "@/lib/site-config";
@@ -105,6 +106,7 @@ export default function RootLayout({
         <JsonLd />
         {children}
         <IntroController />
+        <SmoothScroll />
         {process.env.NODE_ENV === "production" && <SpeedInsights />}
       </body>
     </html>
