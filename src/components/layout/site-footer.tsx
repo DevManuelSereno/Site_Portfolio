@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { ArrowUp } from 'lucide-react'
 import { contactInfo } from '@/lib/portfolio-data'
 
@@ -31,7 +32,16 @@ export function SiteFooter() {
 
       <div className="mt-10 flex flex-col gap-2 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
         <p>© {new Date().getFullYear()} Manuel Sereno. Todos os direitos reservados.</p>
-        <p className="font-mono">Desenhado & desenvolvido por Manuel Sereno</p>
+        <p className="font-mono">
+          <Link
+            href="/privacidade"
+            className="transition-colors hover:text-primary"
+          >
+            Privacidade
+          </Link>
+          <span aria-hidden="true"> · </span>
+          Desenhado & desenvolvido por Manuel Sereno
+        </p>
       </div>
     </footer>
   )
